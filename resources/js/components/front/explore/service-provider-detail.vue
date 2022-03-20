@@ -4,23 +4,23 @@
             <div class="next-project grey-bg elementary-banner section-padd md border-bottom">
                 <div class="container element-index text-center md">
                     <div class="content-sec">
-                        <div class="category-image" v-bind:style="{'background-image': 'url('+ getUserImage(record.user_detail) +')',}"></div>
+                        <div class="category-image" v-bind:style="{'background-image': 'url('+ getUserImage(record.profile_image) +')',}"></div>
 
                         <div class="category-content">
-                            <h2>{{record.business_name}}</h2>
+                            <h2>{{record.service_provider_profile.business_name}}</h2>
                             <div class="jobs-completed">
-                                <star-rating :increment="0.5" :star-size="20" read-only :rating="parseInt(record.avg_rating)" active-color="#00B389"></star-rating>
-                                <span class="review-job">{{record.total_feedback_count}} Feedback reviews</span>
-                                <span class="review-job" v-if="!record.finished_jobs">No Jobs performed</span>
-                                <span class="review-job" v-else>{{ record.finished_jobs }} Jobs performed</span>
+                                <span class="review-job" v-if="!record.service_provider_profile.finished_jobs">No Jobs performed</span>
+                                <span class="review-job" v-else>{{ record.service_provider_profile.finished_jobs }} Jobs performed</span>
                             </div>
                             <div class="service-detail">
 
-                                <a :href="postJobRoute+'&service_provider_user_id='+((record.user_detail && record.user_detail.id)? record.user_detail.id : '')" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite</a>
+<!--
+                                <a :href="postJobRoute+'&service_provider_user_id='+ record.id" v-if="!inBiddingJobsCount" class="btn btn-primary post-bid">Post Job &amp; Invite</a>
 
-                                <a href="#" v-if="inBiddingJobsCount" @click.prevent="invitePopup = true; userToSendInvite=record.user_detail" :class="['btn' , 'btn-primary'  ]">
+                                <a href="#" v-if="inBiddingJobsCount" @click.prevent="invitePopup = true; userToSendInvite=record" :class="['btn' , 'btn-primary'  ]">
                                     Invite
                                 </a>
+-->
                                 <!-- <a @click="categorylisting" href="javascript:void(0);" class="btn btn-link go-back">Go back</a> -->
                             </div>
                         </div>
@@ -48,51 +48,23 @@
                                         Location <strong>{{ getCityArea }}</strong>
                                     </p>
                                     <p class="member-since">
-                                        Member since <strong>{{ record.formatted_created_at }}</strong>
+                                        Member since <strong>{{ record.created_at }}</strong>
                                     </p>
                                 </div>
 
                                 <div class="post-job-description">
-                                    <p>{{ record.business_details }}</p>
-                                </div>
-
-                                <div class="chat-feedback">
-                                    <div class="text-notifer">
-                                        <h3>Feedback & Reviews</h3>
-                                    </div>
-                                    <div class="chat-feedback-column" v-for="reviewer in reviewerRecords" v-if="!noRecordFound">
-                                        <div class="chat-feedback-image" v-bind:style="{'background-image': 'url('+ getUserImage(reviewer.user_detail) +')',}"></div>
-                                        <div class="chat-feedback-message white-msg">
-                                            <p>{{reviewer.message}}</p>
-                                            <div class="feeback-detail">
-                                                <p class="feedback-personal-info">
-                                                    <a href="javascript:void(0);">{{reviewer.user_detail.first_name + " " +reviewer.user_detail.last_name}}</a>
-                                                    posted on
-                                                    <strong>{{reviewer.formatted_created_at}}</strong>
-                                                </p>
-                                                <div class="ratings">
-                                                    <star-rating :increment="0.5" :star-size="20" read-only :rating="parseInt(reviewer.rating)" active-color="#00B389"></star-rating>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <no-record-found v-if="noRecordFound"></no-record-found>
-
-                                    <vue-common-methods :url="reviewUrl" :infiniteLoad="true" @get-records="getReviewerRecords"></vue-common-methods>
+                                    <p>{{ record.service_provider_profile.business_details }}</p>
                                 </div>
 
                             </div>
                         </div>
 
-
-
-
                         <div class="col-md-3 p-l-0 p-r-0">
 
-                            <div class="service-avaliable" v-if="record.all_services_offered">
+                            <div class="service-avaliable" v-if="record.service_provider_profile.services_offered">
                                 <h3 class="m-b-20">Services offered</h3>
                                 <ul>
-                                    <li v-for="service in record.all_services_offered">
+                                    <li v-for="service in record.service_provider_profile.services_offered">
                                         {{ service.title }}
                                     </li>
                                 </ul>
@@ -134,7 +106,7 @@
         },
         computed: {
             getCityArea() {
-                return this.record.user_detail && this.record.user_detail.cityArea ? this.record.user_detail.cityArea.name : 'N/A';
+                return this.record.city_area ? this.record.city_area.name : 'N/A';
             },
             inBiddingJobs(){
                 let user = JSON.parse(this.$store.getters.getAuthUser);
@@ -164,8 +136,8 @@
                 self.noRecordFound = response.noRecordFound;
                 self.pagination = response.pagination;
             },
-            getUserImage(user) {
-                return user? (user.profileImage? user.profileImage : 'images/dummy/image-placeholder.jpg') : 'images/dummy/image-placeholder.jpg';
+            getUserImage(img) {
+                return img ?? 'images/dummy/image-placeholder.jpg';
             },
             AddCustomer() {
                 this.customer = true;
@@ -191,7 +163,6 @@
                     response = response.data;
                     self.record = response.data;
                     self.userToSendInvite = self.record.user_detail;
-                    self.reviewUrl = 'api/user-rating?pagination=true&user_id=' + self.record.user_id;
                 }).catch(error=>{
                     self.pagination = false;
                     self.btnLoading = false;
@@ -218,7 +189,7 @@
 
         mounted(){
             this.getServiceProvider();
-            this.getInBiddingJobs();
+            // this.getInBiddingJobs();
             window.scrollTo(0, 0);
         }
 

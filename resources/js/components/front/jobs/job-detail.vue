@@ -199,7 +199,7 @@
                                     <a v-if="!jobArchived && !jobCancelled && !bid.is_tbd && canAwardJob && isMyJob && bid.amount && Math.ceil(bid.amount)" href="javascript:void(0);"
                                     @click.prevent="bidder = bid; showAwardJob  = true;" class="btn btn-primary">Award Job</a>
 
-                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.service_provider.id)" class="btn btn-primary">View Profile</a>
+                                    <a v-if="isMyJob" href="javascript:void(0);" @click="showProfile(bid.user.id)" class="btn btn-primary">View Profile</a>
                                     <a v-if="showChatButton && (isMyJob || canChat) && JSON.parse($store.getters.getAuthUser).role_id == 3" @click.prevent="checkStatus(bid)" href="javascript:void(0);" class="btn btn-primary">Chat</a>
                                     <a v-if="!jobArchived && !jobCancelled && !jobAwarded && isMyJob && bid.is_visit_required && bid.status == 'pending'" href="javascript:void(0);" @click="showVisitJob = true; bidValue = bid" class="btn btn-primary">Visit Approval</a>
 

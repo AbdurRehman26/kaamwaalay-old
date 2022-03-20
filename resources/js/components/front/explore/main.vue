@@ -11,7 +11,7 @@
 							<img :src="contentimage">
 						</div>
 
-						<div class="container element-index">
+						<div class="container element-index" style="left: 20% !important;">
 							<div class="content-inner md">
 								<h1 class="heading-large">Find best skilled House Help.</h1>
 								<div class="search-filter">

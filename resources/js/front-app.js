@@ -75,19 +75,6 @@ Vue.use(Geocoder, {
 Vue.$geocoder.setDefaultMode('address');
 
 Vue.use(Vuex);
-// base/global options
-// these options can be overridden
-// by the options in the .open(options)
-// function.
-/*const stripeOptions = {
-  key: 'pk_test_ix9VLy3CYcuwWxz1UkMipKun',
-  image: '',
-  locale: 'auto',
-  currency: 'PHP',
-  billingAddress: false,
-  panelLabel: 'Subscribe {{amount}}'
-}
-Vue.use(VueStripeCheckout, stripeOptions);*/
 Vue.component('multiselect', Multiselect);
 Vue.component('MaterialIcons', MaterialIcons);
 
@@ -219,8 +206,6 @@ const app = new Vue({
                 var elmnt = document.getElementById("bid-review");
                 elmnt.scrollIntoView();
             }
-            // var elmnt = document.getElementById("bid-review");
-            // elmnt.scrollIntoView();
         }
     }
 });
@@ -242,6 +227,7 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
    }
 })
 
+/*
 // Laravel Echo
 import Echo from 'laravel-echo';
 window.io = require('socket.io-client');
@@ -257,6 +243,7 @@ if(app.$auth.isAuthenticated()) {
         },
     });
 }
+*/
 /*const app = new Vue({
     router
 }).$mount('#app')*/

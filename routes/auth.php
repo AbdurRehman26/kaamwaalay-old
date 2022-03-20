@@ -1,7 +1,5 @@
 <?php
 
-//Route::apiResource('users', 'Api\UserController');
-
 Route::group([
     'prefix' => 'auth',
 ], function () {

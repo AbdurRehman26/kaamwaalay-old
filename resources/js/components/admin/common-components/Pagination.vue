@@ -53,6 +53,7 @@
             loadingStart(value){
             },
             pagination(value){
+              console.log(value, 220909);
             }
         },
         methods: {
@@ -75,11 +76,10 @@
                     });
 
                 }else{
-
                     self.loading = true;
                     if(self.pagination && self.pagination.current_page != self.pagination.last_page){
                         self.$emit('custom-loading-start', true);
-                        self.$parent.getList(self.pagination.current+1 , function (response) {
+                        self.$parent.getList(self.pagination.current_page+1 , function (response) {
                             self.$emit('custom-loading-start', false);
                             setTimeout(function () {
                                 $state.loaded();

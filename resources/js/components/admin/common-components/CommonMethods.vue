@@ -82,6 +82,7 @@
                         pagination : response.meta
 
                     };
+
                     if(typeof response.unread_count != 'undefined'){
                       result.unread_count = response.unread_count
                     }
@@ -92,7 +93,6 @@
                     self.$emit('get-records', result);
 
                     self.pagination = response.meta;
-
                     self.loading = false;
 
                     if(typeof successCallback !== 'undefined'){

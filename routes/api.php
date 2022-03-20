@@ -28,9 +28,7 @@ Route::group([
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 });
 
-Route::resource('service-provider-profile', 'Api\V1\ServiceProviderProfileController')->except([
-    'edit','create','destroy','store','update',
-]);
+Route::get('service-provider-profile/{user}', 'Api\V1\ServiceProviderProfileController@show');
 
 Route::resource('service', 'Api\V1\ServiceController')->except([
     'edit', 'create', 'store', 'update',

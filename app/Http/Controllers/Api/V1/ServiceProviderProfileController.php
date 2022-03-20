@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Data\Models\User;
 use App\Data\Repositories\ServiceProviderProfileRepository;
-use App\Http\Resources\API\Customer\ServiceProviderProfile\ServiceProviderProfileCollectionResource;
-use App\Services\Customer\ServiceProviderProfileService;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use App\Http\Resources\API\Customer\User\UserCollectionResource;
+use App\Http\Resources\API\Customer\User\UserResource;
+use App\Services\Customer\ServiceProviderProfileService;
+use Illuminate\Http\Request;
 
 class ServiceProviderProfileController
 {
@@ -66,6 +66,11 @@ class ServiceProviderProfileController
         }
 
         return $input;
+    }
+
+    public function show(User $user): UserResource
+    {
+        return new UserResource($user);
     }
 
     public function index(Request $request): UserCollectionResource
