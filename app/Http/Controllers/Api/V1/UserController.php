@@ -226,8 +226,8 @@ class UserController extends ApiResourceController
                 ['message' => 'Invalid User.' ]
             );
             $errorResponse->status = 406;
-            Log::info('Invalid User Error: ');
-            Log::info($e->getMessage());
+            \Log::info('Invalid User Error: ');
+            \Log::info($e->getMessage());
             throw $errorResponse;
         }
 
