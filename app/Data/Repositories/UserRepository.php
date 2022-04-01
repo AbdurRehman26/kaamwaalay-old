@@ -67,7 +67,7 @@ class UserRepository extends AbstractRepository implements RepositoryContract
                     $data->business_details = (Object) app('ServiceProviderProfileRepository')->findByAttribute('user_id', $id, false, true);
                     if (! empty($details['provider_request_data'])) {
                         $serviceDetailsCriteria = ['user_id' => $id];
-                        $data->service_details = app('ServiceProviderProfileRequestRepository')->getUserServices($serviceDetailsCriteria);
+                        $data->service_details = User::find($data->id)->servicesOffered;
                     }
                 }
             }
@@ -99,7 +99,6 @@ class UserRepository extends AbstractRepository implements RepositoryContract
 
                 $totalInBiddingCriteria = ['user_id' => $data->id, 'status' => 'in_bidding'];
                 $data->total_inbidding_jobs = app('JobRepository')->getTotalCountByCriteria($totalInBiddingCriteria);
-                ;
             }
 
             $data->formatted_created_at = Carbon::parse($data->created_at)->format('F j, Y');
@@ -214,8 +213,6 @@ class UserRepository extends AbstractRepository implements RepositoryContract
             if (empty($service['service_id']) || (! empty($service['status']) && $service['status'] == 'approved')) {
                 continue;
             }
-
-            \Log::info('1');
 
             if (! empty($service['service_provider_profile_request_id']) && (! empty($service['status']) && $service['status'] == 'rejected')) {
                 unset($service['status']);

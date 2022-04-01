@@ -185,42 +185,44 @@ class UserController extends ApiResourceController
         $messages['email.unique'] = 'This email address is already taken. Please try another email address';
         $this->validate($request, $rules, $messages);
 
-        try {
-            $checkFacebookUser = Socialite::driver('facebook')->userFromToken($data['access_token']);
-            unset($data['access_token']);
-            if ($user) {
-                unset($data['role_id']);
-                unset($data['from_sign_up']);
-                $userData['user_details'] = $data;
-                $userData['id'] = $user->id;
-                $result = $this->_repository->update($userData);
-                $userId = $user->id;
-            } else {
-                $data['status'] = 'active';
-                unset($data['from_sign_up']);
-                $result = $this->_repository->create($data);
-                $userId = $result->id;
-            }
-            if ($result) {
-                $user = User::find($userId);
-                $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
-                $token = $user->createToken('Token Name', $scopes)->accessToken;
-                $user = app('UserRepository')->findById($userId, false);
-                $user->access_token = $token;
-                $code = 200;
-                $output = [
+        $checkFacebookUser = Socialite::driver('facebook')->userFromToken($data['access_token']);
+        unset($data['access_token']);
+
+        if ($user) {
+            unset($data['role_id']);
+            unset($data['from_sign_up']);
+            $userData['user_details'] = $data;
+            $userData['id'] = $user->id;
+            $result = $this->_repository->update($userData);
+            $userId = $user->id;
+        } else {
+            $data['status'] = 'active';
+            unset($data['from_sign_up']);
+            $result = $this->_repository->create($data);
+            $userId = $result->id;
+        }
+        if ($result) {
+            $user = User::find($userId);
+            $scopes = (Role::find($user->role_id)->scope)?Role::find($user->role_id)->scope:[];
+            $token = $user->createToken('Token Name', $scopes)->accessToken;
+            $user = app('UserRepository')->findById($userId, false);
+            $user->access_token = $token;
+            $code = 200;
+            $output = [
                 'data' => $user,
                 'access_token' => $token,
                 'message' => 'Success',
             ];
-            } else {
-                $errorResponse = ValidationException::withMessages(
-                    ['message' => 'An error occurred.' ]
-                );
-                $errorResponse->status = 406;
+        } else {
+            $errorResponse = ValidationException::withMessages(
+                ['message' => 'An error occurred.' ]
+            );
+            $errorResponse->status = 406;
 
-                throw $errorResponse;
-            }
+            throw $errorResponse;
+        }
+
+        try {
         } catch (\Exception $e) {
             $errorResponse = ValidationException::withMessages(
                 ['message' => 'Invalid User.' ]
