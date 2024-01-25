@@ -39,7 +39,5 @@ class AuthServiceProvider extends ServiceProvider
             }
             Passport::tokensCan($data);
         }
-        
-        Passport::routes();
     }
 }
