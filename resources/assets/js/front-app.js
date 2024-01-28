@@ -1,11 +1,10 @@
 /*Main vue js*/
+import Vue from 'vue'
+window.Vue = Vue;
 
+window.moment = require('moment');
 require('./bootstrap');
 
-window.Vue = require('vue');
-window.moment = require('moment');
-
-import Vue from 'vue';
 import VueRouter from 'vue-router';
 import vbclass from 'vue-body-class';
 import BootstrapVue from 'bootstrap-vue';
@@ -95,6 +94,9 @@ Vue.component('MaterialIcons', MaterialIcons);
 require('./filters')
 require('./directives')
 
+require('./front-components-tags');
+
+
 const options = {
     color: '#8200ff',
     failedColor: '#8200ff',
@@ -108,9 +110,6 @@ const options = {
     location: 'top',
     inverse: false
 }
-
-// Require components tags
-require('./front-components-tags');
 
 Vue.mixin({
    data: function() {
@@ -261,3 +260,4 @@ if(app.$auth.isAuthenticated()) {
 /*const app = new Vue({
     router
 }).$mount('#app')*/
+// Require components tags

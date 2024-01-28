@@ -16,7 +16,7 @@
             requiresAuth: true,
             forAdmin :true,
         },
-        component: require('./components/admin/dashboard/main.vue'),
+        component: require('./components/admin/dashboard/main.vue').default,
     },
 
 
@@ -30,7 +30,7 @@
             bodyClass: 'login-page',
             noHeader: true
         },
-        component: require('./components/auth/main.vue'),
+        component: require('./components/auth/main.vue').default,
     },
 
 
@@ -47,11 +47,11 @@
             forAdmin :true,
 
         },
-        component: require('./components/auth/CreatePassword.vue'),
+        component: require('./components/auth/CreatePassword.vue').default,
     },
     {
         path: '/admin/password/set/:token/:email',
-        component: require('./components/auth/CreatePassword.vue'),
+        component: require('./components/auth/CreatePassword.vue').default,
         meta: {
             title: 'Create Password',
             bodyClass: 'login-page',
@@ -65,7 +65,7 @@
     {
         name: 'service.type',
         path: '/admin/service-type',
-        component: require('./components/admin/service-type/main.vue'),
+        component: require('./components/admin/service-type/main.vue').default,
         meta: {
             title: 'Service Type',
             pagetitle:'Services / Sub Services',
@@ -80,7 +80,7 @@
     {
         name: 'customer',
         path: '/admin/customer',
-        component: require('./components/admin/customer/main.vue'),
+        component: require('./components/admin/customer/main.vue').default,
         meta: {
             title: 'Customer Panel' ,
             pagetitle:'Customers',
@@ -93,7 +93,7 @@
     {
         name: 'customer.detail',
         path: '/admin/customer/customer-detail/:id',
-        component: require('./components/admin/customer/CustomerDetails.vue'),
+        component: require('./components/admin/customer/CustomerDetails.vue').default,
         meta: {
             title: 'Customer Detail' ,
             pagetitle:'Customers Detail',
@@ -106,7 +106,7 @@
     {
         name: 'customer.job.detail',
         path: '/admin/customer/view-job-detail/:id',
-        component: require('./components/admin/customer/ViewJobDetail.vue'),
+        component: require('./components/admin/customer/ViewJobDetail.vue').default,
         meta: {
             title: 'View Job Detail',
             pagetitle:'Customer Job detail',
@@ -121,7 +121,7 @@
     {
         name: 'service.provider',
         path: '/admin/service-provider',
-        component: require('./components/admin/service-provide/main.vue'),
+        component: require('./components/admin/service-provide/main.vue').default,
         meta: {
             title: 'Service Provider',
             pagetitle:'Service Providers',
@@ -134,7 +134,7 @@
     {
         name: 'view.service.job.detail',
         path: '/admin/service-provider/view-job-detail/:id',
-        component: require('./components/admin/service-provide/ViewJobDetail.vue'),
+        component: require('./components/admin/service-provide/ViewJobDetail.vue').default,
         meta: {
             title: 'View Jobs',
             pagetitle:'Jobs Awarded',
@@ -149,7 +149,7 @@
     {
         name: 'job.detail',
         path: '/admin/jobs',
-        component: require('./components/admin/job/Main.vue'),
+        component: require('./components/admin/job/Main.vue').default,
         meta: {
             title: 'Create Job',
             pagetitle:'Jobs',
@@ -164,7 +164,7 @@
     {
         name: 'main.job.detail',
         path: '/admin/jobs/view-job-detail/:id',
-        component: require('./components/admin/job/JobDetails.vue'),
+        component: require('./components/admin/job/JobDetails.vue').default,
         meta: {
             title: 'Job Details',
             pagetitle:'Job Details',
@@ -178,7 +178,7 @@
     {
         name: 'bidding.details',
         path: '/admin/jobs/bidding-details/:jobId',
-        component: require('./components/admin/job/BiddingDetails.vue'),
+        component: require('./components/admin/job/BiddingDetails.vue').default,
         meta: {
             title: 'Bidding Details',
             pagetitle:'Bidding Details',
@@ -196,7 +196,7 @@
     {
         name: 'service.provider.review',
         path: '/admin/service-provider-review',
-        component: require('./components/admin/service-provider-review/main.vue'),
+        component: require('./components/admin/service-provider-review/main.vue').default,
         meta: {
             title: 'Service provider review',
             pagetitle:'Service Providers Review',
@@ -209,7 +209,7 @@
     {
         name: 'service.detail.review',
         path: '/admin/service-provider-review/detail-review/:id',
-        component: require('./components/admin/service-provider-review/DetailReview.vue'),
+        component: require('./components/admin/service-provider-review/DetailReview.vue').default,
         meta: {
             title: 'Service provider review',
             pagetitle:'Service Provider Detail Review',
@@ -224,7 +224,7 @@
     {
         name: 'service.provider.detail',
         path: '/admin/service-provider/service-provider-detail/:id',
-        component: require('./components/admin/service-provide/providerdetails.vue'),
+        component: require('./components/admin/service-provide/providerdetails.vue').default,
         meta: {
             title: 'Service provider details',
             pagetitle:'Service Provider Details',
@@ -239,7 +239,7 @@
     {
         name: 'general.setting',
         path: '/admin/general-setting',
-        component: require('./components/admin/general-setting/main.vue'),
+        component: require('./components/admin/general-setting/main.vue').default,
         meta: {
             title: 'General Setting',
             pagetitle:'General Settings',
@@ -254,7 +254,7 @@
     {
         name: 'payment',
         path: '/admin/payment',
-        component: require('./components/admin/payment/main.vue'),
+        component: require('./components/admin/payment/main.vue').default,
         meta: {
             title: 'Payment',
             pagetitle:'Payment Activities',
@@ -269,7 +269,7 @@
     {
         name: 'support',
         path: '/admin/support',
-        component: require('./components/admin/support/main.vue'),
+        component: require('./components/admin/support/main.vue').default,
         meta: {
             title: 'Support',
             pagetitle:'Support',
@@ -284,7 +284,7 @@
     {
         name: '404',
         path: '*',
-        component: require('./components/404/Main.vue'),
+        component: require('./components/404/Main.vue').default,
         meta: {
             title: '404 Not Found',
             noHeader: true,
@@ -308,7 +308,7 @@
             forAdmin :true,
 
         },
-        component: require('./components/admin/Main.vue'),
+        component: require('./components/admin/Main.vue').default,
     },
     ]
 

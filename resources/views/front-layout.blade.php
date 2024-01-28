@@ -16,7 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <base href="{{url('/')}}"> @yield('before-base-css')
-        <link href="{{url(mix('css/front/app.css'))}}" rel="stylesheet">
+        <link href="{{url('/css/front/app.css')}}" rel="stylesheet">
         <link rel="shortcut icon" type="image/png" href="{{asset('images/favicon-32x32.png')}}" /> @yield('before-base-js')
         <script type="text/javascript">
             if (window.devicePixelRatio > 1) { document.cookie = 'HTTP_IS_RETINA=1;path=/'; }

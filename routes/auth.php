@@ -11,11 +11,6 @@ Route::group([
 
 Route::group(['middleware' => ['scopes']], function () {
 
-    Route::post('campaign/update-campaign', 'Api\V1\CampaignController@updateCampaign');
-    Route::resource('campaign', 'Api\V1\CampaignController')->only([
-        'index', 'store', 'show',
-    ]);
-
     Route::get('dashboard', 'Api\V1\DashboardController@dashboard')->name("dashboard");
 
     //Uploading File
