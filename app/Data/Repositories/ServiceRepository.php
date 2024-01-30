@@ -261,8 +261,11 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
                 return $modelData;
             }
         }
-
-        return parent::findByAll($pagination, $perPage, $data);
+                    //$modelData['data'] = [];
+                    //$count = $this->builder->count();
+                    //$modelData['data'] = parent::findByAll($pagination, $perPage, $data);
+                    //$modelData['data']['service_count'] = $count;
+                    return parent::findByAll($pagination, $perPage, $data);
     }
 
     public function getServicesByZip($fromBuilder = false, $zip = false)

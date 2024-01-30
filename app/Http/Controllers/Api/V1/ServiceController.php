@@ -220,7 +220,6 @@ public function index(Request $request)
     $pagination = !empty($input['pagination']) ? $input['pagination'] : false; 
 
     $data = $this->_repository->findByAll($pagination, $per_page, $input);
-
         //$count = $this->_repository->getServiceCount();
         // Urgent fix $data['data'] needs to be fixed by Ali
 
