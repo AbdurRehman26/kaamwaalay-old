@@ -38,7 +38,7 @@ class UserRatingTableSeeder extends Seeder
                     'rated_by' => $bid->customer_user_id,
                     'rating' => $ratings[array_rand($ratings)],
                     'status' => 'approved',
-                    'message' => $faker->Text,
+                    'message' => collect($faker->words(10, true))->join(' '),
                     'created_at' => $now,
                     'updated_at' => $now
 

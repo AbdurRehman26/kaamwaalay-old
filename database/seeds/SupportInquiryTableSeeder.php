@@ -35,7 +35,7 @@ class SupportInquiryTableSeeder extends Seeder
             for ($i = 1 ; $i <= $numberOfEntries ; $i++) {
                 $data[] = [
                     'id' => $i,
-                    'message' => $faker->Text,
+                    'message' => collect($faker->words(10, true))->join(' '),
                     'support_question_id' => $ids[array_rand($ids)],
                     'user_id' => $userIds[array_rand($userIds)],
                     'is_replied' => mt_rand(0,1),

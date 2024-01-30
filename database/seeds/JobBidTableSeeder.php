@@ -83,7 +83,7 @@ class JobBidTableSeeder extends Seeder
 
                 $bidData = [
                     'id' => $i,
-                    'description' => $faker->Text,
+                    'description' => collect($faker->words(10, true))->join(' '),
                     'amount' => $amount,
                     'is_tbd' => $isTbd,
                     'job_id' => $job->id,
@@ -204,9 +204,11 @@ class JobBidTableSeeder extends Seeder
                             $criteria = ['job_id' => $completedJob->id];
                             $jobBid = app('JobBidRepository')->model->where('is_tbd', '=' , 0)
                                         ->where($criteria)->first();
-                            
-                            $updateData = ['id' => $jobBid['id'], 'status' => 'completed', 'is_awarded' => 1, 'job_id' => $completedJob->id];
-                            $jobBid = app('JobBidRepository')->update($updateData);
+
+                            if($completedJob){
+                                $updateData = ['id' => $jobBid['id'], 'status' => 'completed', 'is_awarded' => 1, 'job_id' => $completedJob->id];
+                                app('JobBidRepository')->update($updateData);
+                            }
 
                         }
 
@@ -234,7 +236,6 @@ class JobBidTableSeeder extends Seeder
             $completedJobBids = app("JobBidRepository")->findByAll(false, 10, $criteria);
 
             if($completedJobBids['data']){
-                $data = [];
                 foreach ($completedJobBids['data'] as $key => $jobBid) {
                     $updateData = ['id' => $jobBid->job_id, 'status' => 'completed'];
                     app('JobRepository')->update($updateData);

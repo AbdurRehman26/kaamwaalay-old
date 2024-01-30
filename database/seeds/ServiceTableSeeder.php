@@ -175,7 +175,7 @@ class ServiceTableSeeder extends Seeder
         $data [] = [
             'id' => (int) $key+1,
             'title' => $service,
-            'description' => $faker->Text,
+            'description' => collect($faker->words(10, true))->join(' '),
             'url_suffix' =>  strtolower(str_replace(' ', '-', $service)),
             'parent_id' => null,
             'images' => json_encode($imageObject),
@@ -210,7 +210,7 @@ class ServiceTableSeeder extends Seeder
                 'id' => (int) $key,
                 'title' => $value,
                 'url_suffix' =>  strtolower(str_replace(' ', '-', $value)),
-                'description' => $faker->Text,
+                'description' => collect($faker->words(10, true))->join(' '),
                 'parent_id' => $parentService->id,
                 'images' => json_encode($imageObject),
                 'is_featured' => $isFeatured[array_rand($isFeatured)],

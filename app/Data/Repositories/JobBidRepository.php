@@ -293,7 +293,6 @@ public function getTotalRevenueCriteria($criteria)
 
 public function getCompletedJobs($criteria)
 {
-
     $model = $this->model->where($criteria);
 
     if ($model != null) {

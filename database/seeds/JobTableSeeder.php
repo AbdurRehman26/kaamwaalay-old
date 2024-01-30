@@ -58,7 +58,7 @@ class JobTableSeeder extends Seeder
                     'user_id' => $user->id,
                     'service_id' => $service->id,
                     'title' => $faker->Company,
-                    'description' => $faker->Text,
+                    'description' => collect($faker->words(10, true))->join(' '),
                     'address' => $faker->Address,
                     'zip_code' => $zipCodes[array_rand($zipCodes)],
                     'country_id' => $country_id,

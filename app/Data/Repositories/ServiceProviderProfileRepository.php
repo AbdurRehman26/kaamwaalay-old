@@ -52,7 +52,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
             $awardedJobs = app('JobBidRepository')->getCountByCriteria($bidsCriteria, false);
             $data->initiated_jobs = $awardedJobs;
 
-            $bidsCriteria = ['job_bids.user_id' => $data->user_id,'.job_bids.status'=>'completed'];
+            $bidsCriteria = ['job_bids.user_id' => $data->user_id,'job_bids.status'=>'completed'];
             $finishedJobs = app('JobBidRepository')->getCompletedJobs($bidsCriteria, false);
             $data->finished_jobs = $finishedJobs;
 
