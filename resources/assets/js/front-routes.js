@@ -14,7 +14,7 @@
             noHeader: true,
             navigation: 'main-nav',
         },
-        component: require('./components/front/auth/main.vue').default,
+        component: require('./components/front/auth/main.vue'),
     },
     {
         name: 'password.reset',
@@ -25,11 +25,11 @@
             noHeader: true,
             navigation: 'main-nav',
         },
-        component: require('./components/front/auth/ResetPassword.vue').default,
+        component: require('./components/front/auth/ResetPassword.vue'),
     },
     {
         path: '/user/activate',
-        component: require('./components/front/auth/main.vue').default,
+        component: require('./components/front/auth/main.vue'),
         meta: {
             title: 'PSM | Login',
             bodyClass: 'login-page',
@@ -47,7 +47,7 @@
             bodyClass: 'home_body',
             navigation: 'main-nav',
         },
-        component: require('./components/front/landing/main.vue').default,
+        component: require('./components/front/landing/main.vue'),
     },
 
     // Join As Pro
@@ -59,7 +59,7 @@
             bodyClass: 'Join_pro',
             navigation: 'main-nav',
         },
-        component: require('./components/front/join-as-pro/main.vue').default,
+        component: require('./components/front/join-as-pro/main.vue'),
     },
 
 
@@ -74,7 +74,7 @@
             navigation: 'main-nav',
             forAll: true,
         },
-        component: require('./components/front/explore/main.vue').default,
+        component: require('./components/front/explore/main.vue'),
     },
     {
         name: 'Explore_Detail',
@@ -86,7 +86,7 @@
             navigation: 'main-nav',
             forAll: true,
         },
-        component: require('./components/front/explore/service-provider.vue').default,
+        component: require('./components/front/explore/service-provider.vue'),
     },
 
     {
@@ -99,7 +99,7 @@
             navigation: 'main-nav',
             forAll: true,
         },
-        component: require('./components/front/explore/service-provider-detail.vue').default,
+        component: require('./components/front/explore/service-provider-detail.vue'),
     },    
 
     // Sign Up
@@ -113,7 +113,7 @@
             bodyClass: 'signup-page',
             navigation: 'main-nav',
         },
-        component: require('./components/front/sign-up/main.vue').default,
+        component: require('./components/front/sign-up/main.vue'),
     },
     // Profile
 
@@ -127,7 +127,7 @@
             requiresAuth: true,
             forCustomer: true,
         },
-        component: require('./components/front/profile/main.vue').default,
+        component: require('./components/front/profile/main.vue'),
     },
     {
         name: 'provider_profile',
@@ -139,7 +139,7 @@
             requiresAuth : true,
             forServiceProvider : true,
         },
-        component: require('./components/front/profile/ApplyForReview.vue').default,
+        component: require('./components/front/profile/ApplyForReview.vue'),
     },
 
 
@@ -155,7 +155,7 @@
             requiresAuth: true,
             forCustomer: true,
         },
-        component: require('./components/front/job-post/main.vue').default,
+        component: require('./components/front/job-post/main.vue'),
     },
 
     // Job Post
@@ -169,7 +169,7 @@
             navigation: 'customer-nav',
             requiresAuth: true,
         },
-        component: require('./components/front/job-post/main.vue').default,
+        component: require('./components/front/job-post/main.vue'),
     },
 
     // Featured Profile
@@ -184,7 +184,7 @@
             requiresAuth: true,       
             forServiceProvider: true,       
         },
-        component: require('./components/front/featured-profile/main.vue').default,
+        component: require('./components/front/featured-profile/main.vue'),
     },
 
 
@@ -200,7 +200,7 @@
             requiresAuth: true,
             forCustomer: true,
         },
-        component: require('./components/front/jobs/my-jobs.vue').default,
+        component: require('./components/front/jobs/my-jobs.vue'),
     },
 
 
@@ -214,7 +214,7 @@
             requiresAuth: true,
             forServiceProvider: true,
         },
-        component: require('./components/front/jobs/explore-jobs.vue').default,
+        component: require('./components/front/jobs/explore-jobs.vue'),
     },
 
 
@@ -227,7 +227,7 @@
             navigation: 'customer-nav',
             requiresAuth: true,
         },
-        component: require('./components/front/jobs/job-detail.vue').default,
+        component: require('./components/front/jobs/job-detail.vue'),
     },
 
     // Advice Center
@@ -242,7 +242,7 @@
             navigation: 'provider-nav',
             requiresAuth: true,
         },
-        component: require('./components/front/advice-center/main.vue').default,
+        component: require('./components/front/advice-center/main.vue'),
     },
 
 
@@ -257,7 +257,7 @@
             requiresAuth: true,
             forServiceProvider: true,
         },
-        component: require('./components/front/bids/main.vue').default,
+        component: require('./components/front/bids/main.vue'),
     },
 
 
@@ -271,7 +271,7 @@
             bodyClass: 'profile-rejection-page',
             navigation: 'provider-nav',
         },
-        component: require('./components/front/profile-rejection/main.vue').default,
+        component: require('./components/front/profile-rejection/main.vue'),
     },
 
     {
@@ -282,7 +282,7 @@
             bodyClass: 'profile-rejection-page',
             navigation: 'provider-nav',
         },
-        component: require('./components/front/profile-rejection/not-approved.vue').default,
+        component: require('./components/front/profile-rejection/not-approved.vue'),
     },    
 
     {
@@ -293,7 +293,7 @@
             bodyClass: 'profile-rejection-page',
             navigation: 'provider-nav',
         },
-        component: require('./components/front/profile-rejection/profile-yet.vue').default,
+        component: require('./components/front/profile-rejection/profile-yet.vue'),
     },        
 
 
@@ -306,7 +306,7 @@
             bodyClass: 'terms-condition-page',
             navigation: 'main-nav',
         },
-        component: require('./components/front/static-pages/TermsCondition.vue').default,
+        component: require('./components/front/static-pages/TermsCondition.vue'),
     },
 
     {
@@ -317,7 +317,7 @@
             bodyClass: 'privacy-policy-page',
             navigation: 'main-nav',
         },
-        component: require('./components/front/static-pages/PrivacyPolicy.vue').default,
+        component: require('./components/front/static-pages/PrivacyPolicy.vue'),
     },
 
     /*404*/
@@ -325,7 +325,7 @@
     {
         name: '404',
         path: '*',
-        component: require('./components/404/Main.vue').default,
+        component: require('./components/404/Main.vue'),
         meta: {
             title: 'PSM | 404',
             noHeader: true,
