@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\UserAgent;
 use App\Data\Repositories\UserAgentRepository;
+use App\Models\UserAgent;
+use Illuminate\Support\ServiceProvider;
 
 class UserAgentRepositoryServiceProvider extends ServiceProvider
 {

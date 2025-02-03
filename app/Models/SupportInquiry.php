@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Data\Models\SupportQuestion;
 use Yadakhov\InsertOnDuplicateKey;
 
 class SupportInquiry extends Model

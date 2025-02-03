@@ -2,12 +2,12 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\SupportInquiry;
+use Cache;
+use DB;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\SupportInquiry;
-use App\Data\Models\Role;
-use Cache,StdClass;
-use DB;
+use StdClass;
 
 class SupportInquiryRepository extends AbstractRepository implements RepositoryContract
 {

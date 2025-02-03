@@ -2,13 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\UserRating;
-use App\Data\Models\User;
 use App\Data\Repositories\UserRatingRepository;
-use App\Data\Models\Job;
-use App\Data\Models\Role;
-use App\Notifications\UserRatingCreatedNotification;
+use App\Models\Job;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\UserRating;
+use Illuminate\Support\ServiceProvider;
 
 class UserRatingRepositoryServiceProvider extends ServiceProvider
 {

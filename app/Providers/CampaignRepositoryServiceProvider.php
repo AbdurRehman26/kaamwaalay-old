@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\Campaign;
 use App\Data\Repositories\CampaignRepository;
+use App\Models\Campaign;
+use Illuminate\Support\ServiceProvider;
 
 class CampaignRepositoryServiceProvider extends ServiceProvider
 {

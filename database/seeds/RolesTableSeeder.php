@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Data\Models\Role;
+use App\Models\Role;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class RolesTableSeeder extends Seeder
 {

@@ -2,15 +2,15 @@
 
 namespace App\Jobs;
 
+use App\Models\Job;
+use App\Models\JobBid;
+use App\Models\User;
+use App\Notifications\JobBidCreatedNotification;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Notifications\JobBidCreatedNotification;
-use App\Data\Models\User;
-use App\Data\Models\Job;
-use App\Data\Models\JobBid;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
 class JobBidCreated implements ShouldQueue
 {

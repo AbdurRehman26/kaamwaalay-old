@@ -2,10 +2,10 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\UserRating;
+use Carbon\Carbon;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\UserRating;
-use Carbon\Carbon;
 
 class UserRatingRepository extends AbstractRepository implements RepositoryContract
 {

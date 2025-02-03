@@ -2,14 +2,13 @@
 
 namespace App\Data\Repositories;
 
-use Kazmi\Data\Contracts\RepositoryContract;
-use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\Campaign;
-use App\Data\Models\User;
-use App\Data\Models\Plan;
+use App\Models\Campaign;
+use App\Models\Plan;
+use App\Models\User;
 use App\Notifications\CampaignNotification;
 use Cache;
-use Carbon\Carbon;
+use Kazmi\Data\Contracts\RepositoryContract;
+use Kazmi\Data\Repositories\AbstractRepository;
 
 class CampaignRepository extends AbstractRepository implements RepositoryContract
 {

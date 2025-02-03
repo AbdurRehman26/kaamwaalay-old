@@ -2,9 +2,9 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\Country;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\Country;
 
 class CountryRepository extends AbstractRepository implements RepositoryContract
 {

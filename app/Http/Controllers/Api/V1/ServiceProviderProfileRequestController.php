@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\ServiceProviderProfileRequestRepository;
-use App\Data\Models\Role;
 
 class ServiceProviderProfileRequestController extends ApiResourceController
 {

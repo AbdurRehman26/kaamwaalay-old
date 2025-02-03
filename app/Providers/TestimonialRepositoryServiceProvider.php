@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\Testimonial;
 use App\Data\Repositories\TestimonialRepository;
+use App\Models\Testimonial;
+use Illuminate\Support\ServiceProvider;
 
 class TestimonialRepositoryServiceProvider extends ServiceProvider
 {

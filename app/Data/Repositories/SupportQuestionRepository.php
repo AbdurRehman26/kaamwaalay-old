@@ -2,9 +2,9 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\SupportQuestion;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\SupportQuestion;
 
 class SupportQuestionRepository extends AbstractRepository implements RepositoryContract
 {

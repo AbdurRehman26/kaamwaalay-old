@@ -1,10 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Data\Models\Role;
-use App\Data\Models\User;
-use Faker\Factory;
+use App\Models\Role;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class JobBidTableSeeder extends Seeder
 {

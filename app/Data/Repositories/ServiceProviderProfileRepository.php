@@ -2,12 +2,12 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\Role;
+use App\Models\ServiceProviderProfile;
+use Carbon\Carbon;
+use DB;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\ServiceProviderProfile;
-use DB;
-use Carbon\Carbon;
-use App\Data\Models\Role;
 use Storage;
 
 class ServiceProviderProfileRepository extends AbstractRepository implements RepositoryContract

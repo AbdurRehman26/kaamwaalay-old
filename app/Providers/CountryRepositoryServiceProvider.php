@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\Country;
 use App\Data\Repositories\CountryRepository;
+use App\Models\Country;
+use Illuminate\Support\ServiceProvider;
 
 class CountryRepositoryServiceProvider extends ServiceProvider
 {

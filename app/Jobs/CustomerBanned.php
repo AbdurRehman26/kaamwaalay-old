@@ -2,22 +2,16 @@
 
 namespace App\Jobs;
 
+use App\Events\UrgentJobCreated;
+use App\Models\Job;
+use App\Models\JobBid;
+use App\Models\User;
+use App\Notifications\CustomerBannedNotification;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use App\Data\Models\Job;
-use App\Data\Models\JobBid;
-use App\Data\Models\ZipCode;
-use App\Data\Models\User;
-use App\Data\Models\ServiceProviderService;
-use App\Data\Models\ServiceProviderProfileRequest;
-use App\Data\Repositories\JobRepository;
-use App\Helper\Helper;
-use App\Events\UrgentJobCreated;
-use App\Data\Models\ServiceProviderProfile;
-use App\Notifications\CustomerBannedNotification;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
 class CustomerBanned implements ShouldQueue
 {

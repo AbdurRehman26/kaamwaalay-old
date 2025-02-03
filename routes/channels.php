@@ -1,7 +1,4 @@
 <?php
-use App\Data\Models\JobMessage;
-use App\Data\Models\JobBid;
-use App\Data\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Broadcast Channels

@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\Plan;
 use App\Data\Repositories\PlanRepository;
+use App\Models\Plan;
+use Illuminate\Support\ServiceProvider;
 
 class PlanRepositoryServiceProvider extends ServiceProvider
 {

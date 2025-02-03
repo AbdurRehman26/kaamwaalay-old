@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Data\Models\User;
-use App\Data\Models\Role;
+use App\Models\Role;
+use App\Models\User;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
 {

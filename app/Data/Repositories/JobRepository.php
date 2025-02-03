@@ -2,20 +2,20 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\Job;
+use App\Models\JobBid;
+use App\Models\Plan;
+use App\Models\Role;
+use App\Models\ServiceProviderProfile;
+use App\Models\ServiceProviderProfileRequest;
+use App\Models\ServiceProviderService;
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Validation\ValidationException;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\Job;
-use App\Data\Models\Role;
-use App\Data\Models\User;
-use App\Data\Models\ServiceProviderService;
-use App\Data\Models\ServiceProviderProfileRequest;
-use App\Data\Models\JobBid;
-use App\Data\Models\ServiceProviderProfile;
-use Carbon\Carbon;
-use Storage;
-use App\Data\Models\Plan;
 use Laravel\Cashier\Subscription;
-use Illuminate\Validation\ValidationException;
+use Storage;
 
 class JobRepository extends AbstractRepository implements RepositoryContract
 {

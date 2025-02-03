@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Data\Models\Plan;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 
 class PlansTableSeeder extends Seeder
 {

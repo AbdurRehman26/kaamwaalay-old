@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Data\Models\Plan;
-use App\Data\Models\Payment;
+use App\Models\Payment;
+use App\Models\Plan;
+use App\Models\Role;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
-use App\Data\Models\Role;
+use Illuminate\Database\Seeder;
 
 class PaymentTableSeeder extends Seeder
 {

@@ -3,11 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\SupportInquiryRepository;
-use App\Data\Models\Role;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Validation\Rule;
+use App\Models\Role;
 
 class SupportInquiryController extends ApiResourceController
 {

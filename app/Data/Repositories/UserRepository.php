@@ -2,17 +2,17 @@
 
 namespace App\Data\Repositories;
 
+use App\Helper\Helper;
+use App\Models\Plan;
+use App\Models\Role;
+use App\Models\User;
+use Carbon\Carbon;
+use DB;
+use Illuminate\Validation\ValidationException;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\User;
-use App\Data\Models\Role;
-use DB;
-use Carbon\Carbon;
-use Storage;
-use App\Helper\Helper;
-use App\Data\Models\Plan;
 use Laravel\Cashier\Subscription;
-use Illuminate\Validation\ValidationException;
+use Storage;
 
 class UserRepository extends AbstractRepository implements RepositoryContract
 {

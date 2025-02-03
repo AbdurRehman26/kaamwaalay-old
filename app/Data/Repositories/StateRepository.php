@@ -2,10 +2,10 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\Country;
+use App\Models\State;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\State;
-use App\Data\Models\Country;
 
 class StateRepository extends AbstractRepository implements RepositoryContract
 {

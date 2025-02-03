@@ -2,9 +2,9 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\UserAgent;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\UserAgent;
 
 class UserAgentRepository extends AbstractRepository implements RepositoryContract
 {

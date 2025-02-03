@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Country;
 use Illuminate\Database\Seeder;
-use App\Data\Models\Country;
 
 class CountriesTableSeeder extends Seeder
 {

@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\JobBid;
-use App\Data\Models\User;
-use App\Data\Models\Job;
 use App\Data\Repositories\JobBidRepository;
+use App\Models\Job;
+use App\Models\JobBid;
+use App\Models\User;
 use App\Notifications\JobBidUpdatedNotification;
 use Carbon\Carbon;
+use Illuminate\Support\ServiceProvider;
 
 class JobBidRepositoryServiceProvider extends ServiceProvider
 {

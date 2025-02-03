@@ -2,10 +2,8 @@
 
 namespace App\Listeners;
 
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\User;
 use App\Notifications\UserMessagedNotification;
-use App\Data\Models\User;
 
 class UserMessagedListener
 {

@@ -2,20 +2,17 @@
 
 namespace App\Notifications;
 
+use App\Models\Role;
+use Carbon\Carbon;
+use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
+use Illuminate\Queue\SerializesModels;
 use NotificationChannels\OneSignal\OneSignalChannel;
 use NotificationChannels\OneSignal\OneSignalMessage;
-use NotificationChannels\OneSignal\OneSignalWebButton;
-use Illuminate\Notifications\Messages\BroadcastMessage;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Foundation\Events\Dispatchable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\InteractsWithSockets;
-use App\Data\Models\Role;
-use Carbon\Carbon;
 
 class UserMessagedNotification extends Notification implements ShouldQueue
 {

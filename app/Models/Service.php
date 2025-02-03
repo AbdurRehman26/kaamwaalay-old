@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,7 +23,7 @@ class Service extends Model
 
     public function subServices()
     {
-        return $this->hasMany('App\Data\Models\Service', 'parent_id');
+        return $this->hasMany('App\Models\Service', 'parent_id');
     }
 
     public function getImagesAttribute($value)

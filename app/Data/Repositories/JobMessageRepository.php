@@ -2,13 +2,12 @@
 
 namespace App\Data\Repositories;
 
-use Kazmi\Data\Contracts\RepositoryContract;
-use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\JobMessage;
 use App\Events\UserMessaged;
-use App\Events\UserIsOnline;
+use App\Models\JobMessage;
 use Carbon\Carbon;
 use DB;
+use Kazmi\Data\Contracts\RepositoryContract;
+use Kazmi\Data\Repositories\AbstractRepository;
 
 class JobMessageRepository extends AbstractRepository implements RepositoryContract
 {

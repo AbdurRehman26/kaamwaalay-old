@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\JobMessage;
 use App\Data\Repositories\JobMessageRepository;
+use App\Models\JobMessage;
+use Illuminate\Support\ServiceProvider;
 
 class JobMessageRepositoryServiceProvider extends ServiceProvider
 {

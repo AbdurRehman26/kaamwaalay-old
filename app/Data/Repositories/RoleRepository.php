@@ -2,9 +2,9 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\Role;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\Role;
 
 class RoleRepository extends AbstractRepository implements RepositoryContract
 {

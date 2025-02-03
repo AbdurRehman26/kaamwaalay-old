@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\Payment;
 use App\Data\Repositories\PaymentRepository;
+use App\Models\Payment;
+use Illuminate\Support\ServiceProvider;
 
 class PaymentRepositoryServiceProvider extends ServiceProvider
 {

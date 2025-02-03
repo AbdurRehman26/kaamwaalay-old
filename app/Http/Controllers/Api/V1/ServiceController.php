@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\ServiceRepository;
-use App\Data\Models\Role;
-use App\Data\Models\Service;
+use App\Models\Service;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\Response;
 
 class ServiceController extends ApiResourceController
 {

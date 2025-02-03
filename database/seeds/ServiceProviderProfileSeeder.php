@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Database\Seeder;
-use App\Data\Models\User;
-use App\Data\Models\Role;
-use App\Data\Models\ServiceProviderProfile;
-use App\Data\Models\ServiceProviderProfileRequest;
-use App\Data\Models\ServiceProviderService;
+use App\Models\Role;
+use App\Models\ServiceProviderProfile;
+use App\Models\ServiceProviderProfileRequest;
+use App\Models\ServiceProviderService;
+use App\Models\User;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 
 class ServiceProviderProfileSeeder extends Seeder
 {

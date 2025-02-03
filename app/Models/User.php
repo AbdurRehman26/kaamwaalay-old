@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Yadakhov\InsertOnDuplicateKey;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Passport\HasApiTokens;
 use App\Notifications\ActivationNotification;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Notifications\SendEmailPasswordNotification;
 use App\Notifications\SendServiceProviderStatusNotification;
-use Storage;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
+use Laravel\Passport\HasApiTokens;
+use Storage;
+use Yadakhov\InsertOnDuplicateKey;
 
 class User extends Authenticatable
 {

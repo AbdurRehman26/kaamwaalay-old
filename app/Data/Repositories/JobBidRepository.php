@@ -2,13 +2,12 @@
 
 namespace App\Data\Repositories;
 
+use App\Jobs\JobBidCreated;
+use App\Models\JobBid;
+use Carbon\Carbon;
+use DB;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\JobBid;
-use App\Data\Models\Job;
-use Carbon\Carbon;
-use App\Jobs\JobBidCreated;
-use DB;
 
 class JobBidRepository extends AbstractRepository implements RepositoryContract
 {

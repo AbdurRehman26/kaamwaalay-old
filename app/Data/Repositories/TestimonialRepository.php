@@ -2,10 +2,10 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\Testimonial;
+use Carbon\Carbon;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\Testimonial;
-use Carbon\Carbon;
 
 class TestimonialRepository extends AbstractRepository implements RepositoryContract
 {

@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\PaymentRepository;
-use App\Data\Models\Role;
+use App\Models\Plan;
+use App\Models\Role;
 use Illuminate\Http\Request;
-use Validator;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Rule;
-use App\Data\Models\Plan;
+use Illuminate\Validation\ValidationException;
+use Validator;
 
 class PaymentController extends ApiResourceController
 {

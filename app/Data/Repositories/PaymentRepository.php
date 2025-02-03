@@ -2,13 +2,12 @@
 
 namespace App\Data\Repositories;
 
-use Kazmi\Data\Contracts\RepositoryContract;
-use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\Payment;
-use App\Data\Models\User;
-use App\Data\Models\Plan;
+use App\Models\Payment;
+use App\Models\Plan;
 use Carbon\Carbon;
 use DB;
+use Kazmi\Data\Contracts\RepositoryContract;
+use Kazmi\Data\Repositories\AbstractRepository;
 use Laravel\Cashier\Subscription;
 
 class PaymentRepository extends AbstractRepository implements RepositoryContract

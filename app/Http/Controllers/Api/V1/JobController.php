@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\JobRepository;
-use Illuminate\Validation\Rule;
+use App\Models\Job;
 use Illuminate\Http\Request;
-use App\Data\Models\Job;
+use Illuminate\Validation\Rule;
 
 class JobController extends ApiResourceController
 {

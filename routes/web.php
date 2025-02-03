@@ -9,8 +9,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Events\UserMessaged;
-use App\Data\Models\JobMessage;
 Route::get('/clear', function () {
     \Cache::flush();
     dd('cache cleared');
@@ -18,7 +16,7 @@ Route::get('/clear', function () {
 
 Route::get('/clear', function () {
     \Cache::flush();
-    dd( App\Data\Models\User::where('role_id' , 2)->first() ,  'cache cleared');
+    dd( \App\Models\User::where('role_id' , 2)->first() ,  'cache cleared');
 });
 
 Route::get('youtube/validate/video', 'Api\V1\UserController@checkYoutubeVideo')->name('youtube.validate.video');
@@ -47,7 +45,7 @@ Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 /*Front Route*/
 Route::prefix('services')->group(function () {
 
-    Route::get('/{services}/{subservice?}', function(App\Data\Models\Service $serviceModel) {
+    Route::get('/{services}/{subservice?}', function(\App\Models\Service $serviceModel) {
         $subService = $serviceModel->toArray();
         if(!empty($subService)) {
             return view('front-layout', ['service' => $subService]);

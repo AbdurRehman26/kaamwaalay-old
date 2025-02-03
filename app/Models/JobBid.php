@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Yadakhov\InsertOnDuplicateKey;
-use Carbon\Carbon;
 
 class JobBid extends Model
 {

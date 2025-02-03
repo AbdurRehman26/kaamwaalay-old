@@ -2,10 +2,9 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\ServiceProviderService;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\ServiceProviderService;
-use Illuminate\Support\Facades\Cache;
 
 class ServiceProviderServiceRepository extends AbstractRepository implements RepositoryContract
 {

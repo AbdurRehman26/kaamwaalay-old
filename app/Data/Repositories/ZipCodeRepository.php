@@ -2,9 +2,9 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\ZipCode;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\ZipCode;
 
 class ZipCodeRepository extends AbstractRepository implements RepositoryContract
 {

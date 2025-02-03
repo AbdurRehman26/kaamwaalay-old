@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Data\Models;
-use Yadakhov\InsertOnDuplicateKey;
-
+namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
+use Yadakhov\InsertOnDuplicateKey;
 
 class SupportQuestion extends Model
 {

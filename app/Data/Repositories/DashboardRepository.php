@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Data\Repositories;
-use App\Data\Models\Role;
+use App\Helper\Helper;
+use App\Models\Role;
 use Carbon\Carbon;
 use DB;
-use \StdClass;
-use App\Helper\Helper;
 
 class DashboardRepository
 {

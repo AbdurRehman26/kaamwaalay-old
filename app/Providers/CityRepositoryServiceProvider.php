@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\City;
 use App\Data\Repositories\CityRepository;
+use App\Models\City;
+use Illuminate\Support\ServiceProvider;
 
 class CityRepositoryServiceProvider extends ServiceProvider
 {

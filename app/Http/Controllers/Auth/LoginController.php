@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Data\Repositories\UserRepository;
-use Illuminate\Http\Request;
-use App\Data\Models\User;
-use App\Data\Models\Role;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Lang;
+use App\Http\Controllers\Controller;
+use App\Models\Role;
+use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller

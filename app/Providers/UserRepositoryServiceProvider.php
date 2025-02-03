@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\User;
 use App\Data\Repositories\UserRepository;
+use App\Models\User;
+use Illuminate\Support\ServiceProvider;
 
 class UserRepositoryServiceProvider extends ServiceProvider
 {

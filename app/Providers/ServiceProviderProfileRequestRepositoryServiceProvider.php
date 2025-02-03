@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\ServiceProviderProfileRequest;
 use App\Data\Repositories\ServiceProviderProfileRequestRepository;
+use App\Models\ServiceProviderProfileRequest;
+use App\Models\User;
 use App\Notifications\ServiceProviderReviewNotification;
-use App\Data\Models\User;
+use Illuminate\Support\ServiceProvider;
 
 class ServiceProviderProfileRequestRepositoryServiceProvider extends ServiceProvider
 {

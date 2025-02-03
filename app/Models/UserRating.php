@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Data\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Yadakhov\InsertOnDuplicateKey;
 
-class City extends Model
+class UserRating extends Model
 {
+    //
     use InsertOnDuplicateKey;
+    const APPROVED = "approved";
 }

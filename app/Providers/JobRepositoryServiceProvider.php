@@ -2,18 +2,13 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\Job;
-use App\Data\Models\JobBid;
-use App\Data\Models\ZipCode;
-use App\Data\Models\User;
-use App\Data\Models\ServiceProviderService;
-use App\Data\Models\ServiceProviderProfileRequest;
 use App\Data\Repositories\JobRepository;
-use App\Helper\Helper;
-use App\Data\Models\ServiceProviderProfile;
 use App\Jobs\UrgentJobCreate;
+use App\Models\Job;
+use App\Models\JobBid;
+use App\Models\User;
 use App\Notifications\JobStatusChangeNotification;
+use Illuminate\Support\ServiceProvider;
 
 class JobRepositoryServiceProvider extends ServiceProvider
 {

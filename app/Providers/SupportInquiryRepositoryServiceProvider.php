@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Data\Models\SupportInquiry;
 use App\Data\Repositories\SupportInquiryRepository;
+use App\Models\SupportInquiry;
+use Illuminate\Support\ServiceProvider;
 
 class SupportInquiryRepositoryServiceProvider extends ServiceProvider
 {

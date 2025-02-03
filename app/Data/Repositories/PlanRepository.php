@@ -2,10 +2,10 @@
 
 namespace App\Data\Repositories;
 
+use App\Models\Plan;
+use Carbon\Carbon;
 use Kazmi\Data\Contracts\RepositoryContract;
 use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\Plan;
-use Carbon\Carbon;
 
 class PlanRepository extends AbstractRepository implements RepositoryContract
 {

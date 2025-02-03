@@ -3,18 +3,16 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Data\Repositories\UserRepository;
-use App\Data\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Auth\Events\PasswordReset;
 use App\Events\NewPasswordSet;
-use App\Data\Models\Role;
-use Illuminate\Validation\Rule;
-use Validator;
 use App\Helper\Helper;
 use App\Jobs\CustomerBanned;
-use Socialite;
+use App\Models\Role;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
+use Socialite;
+use Validator;
 
 class UserController extends ApiResourceController
 {

@@ -2,18 +2,15 @@
 
 namespace App\Data\Repositories;
 
-use Kazmi\Data\Contracts\RepositoryContract;
-use Kazmi\Data\Repositories\AbstractRepository;
-use App\Data\Models\ServiceProviderService;
-use Illuminate\Support\Facades\Storage;
-use App\Data\Models\Service;
-use App\Data\Models\Role;
-use App\Helper\Helper;
-use Request;
+use App\Models\Role;
+use App\Models\Service;
+use App\Models\ServiceProviderService;
 use DB;
-use GuzzleHttp\Client;
 use GuzzleHttp\Message\Request as GuzzleRequest;
 use GuzzleHttp\Message\Response as GuzzleResponse;
+use Kazmi\Data\Contracts\RepositoryContract;
+use Kazmi\Data\Repositories\AbstractRepository;
+use Request;
 
 class ServiceRepository extends AbstractRepository implements RepositoryContract
 {
