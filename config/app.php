@@ -160,8 +160,6 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        // Kazmi\Resource\ResourceCommandServiceProvider::class,
-        App\Providers\CampaignRepositoryServiceProvider::class,
         App\Providers\CityRepositoryServiceProvider::class,
         App\Providers\CountryRepositoryServiceProvider::class,
         App\Providers\JobBidRepositoryServiceProvider::class,
@@ -177,16 +175,10 @@ return [
         App\Providers\StateRepositoryServiceProvider::class,
         App\Providers\SupportInquiryRepositoryServiceProvider::class,
         App\Providers\SupportQuestionRepositoryServiceProvider::class,
-        App\Providers\TestimonialRepositoryServiceProvider::class,
-        App\Providers\UserAgentRepositoryServiceProvider::class,
         App\Providers\UserRatingRepositoryServiceProvider::class,
         App\Providers\UserRepositoryServiceProvider::class,
-        App\Providers\ZipCodeRepositoryServiceProvider::class,
-        App\Providers\SEOServiceProvider::class,
         NotificationChannels\OneSignal\OneSignalServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        //Jenssegers\Mongodb\MongodbServiceProvider::class,
-
     ],
 
     /*
