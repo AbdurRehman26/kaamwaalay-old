@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "axios": "^0.18",
+        "babel-loader": "^8.4.1",
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "jquery": "^3.2",
@@ -30,7 +31,6 @@
         "ajv-keywords": "^3.2.0",
         "amcharts3": "github:amcharts/amcharts3",
         "audit": "0.0.6",
-        "babel-loader": "^7.1.5",
         "bootstrap-sass": "^3.3.7",
         "bootstrap-slider": "^10.2.0",
         "bootstrap-vue": "^2.0.0-rc.11",

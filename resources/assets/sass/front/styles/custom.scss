@@ -43,10 +43,10 @@ $section-padding-sm:20px 0px;
 }
 
 .upload-image-icon{
-  background-image: url('/images/front/svg/upload.svg');
+  background-image: url('~/images/front/svg/upload.svg');
 }
 .capture-image-icon{
-  background-image: url('/images/front/svg/photo-camera-outline.svg');
+  background-image: url('~/images/front/svg/photo-camera-outline.svg');
 }
 
 .image-uploading-btn{
@@ -3759,7 +3759,7 @@ body{
     }
     i {
         &.ios-andriod-app {
-            background-image: url('/images/front/svg/mobile-icon.svg');
+            background-image: url('~/images/front/svg/mobile-icon.svg');
             width: 26px;
             height: 30px;
             background-size: 100% auto;
@@ -4410,7 +4410,7 @@ p.awarded_to {
         top: -6px;
         width: 22px;
         height: 25px;
-        background-image: url('/images/caret-top.png');
+        background-image: url('~/images/caret-top.png');
         background-repeat: no-repeat;
         background-size: 100% auto;
         box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2);
