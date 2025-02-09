@@ -25,8 +25,6 @@ class UsersTableSeeder extends Seeder
 
         $numOfStates = 2;
 
-        $zipCodes = app('ZipCodeRepository')->model->inRandomOrder()->pluck('zip_code')->toArray();
-        
         $states = app('StateRepository')->model->inRandomOrder()->limit($numOfStates)->pluck('id')->toArray();
         
         $cities = app('CityRepository')->model->whereIn('state_id' , $states)->get()->toArray();
@@ -49,7 +47,6 @@ class UsersTableSeeder extends Seeder
             'state_id' => $state_id,
             'city_id' => $city_id,
             'status' => 'active',
-            'zip_code' => $zipCodes[array_rand($zipCodes)],
             'activation_key' => bcrypt('cygnismedia'),
             'activated_at' => $date,
             'remember_token' => bcrypt('cygnismedia'),
@@ -98,7 +95,6 @@ class UsersTableSeeder extends Seeder
                 'state_id' => $state_id,
                 'city_id' => $city_id,
                 'status' => 'active',
-                'zip_code' => $zipCodes[array_rand($zipCodes)],
                 'activation_key' => bcrypt('cygnismedia'),
                 'activated_at' => $date,
                 'remember_token' => bcrypt('cygnismedia'),
