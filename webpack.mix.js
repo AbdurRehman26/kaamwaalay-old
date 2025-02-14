@@ -11,8 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css').vue()
+mix.sass('resources/assets/sass/app.scss', 'public/css').vue()
 
 mix.js('resources/assets/js/front-app.js', 'public/js')
    .sass('resources/assets/sass/front/app.scss', 'public/css/front/').vue() //front sass file

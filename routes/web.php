@@ -9,6 +9,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Support\Facades\Route;
+
 Route::get('/clear', function () {
     \Cache::flush();
     dd('cache cleared');
@@ -38,9 +41,6 @@ Route::post('login/social', 'Api\V1\UserController@socialLogin')->name('social.l
 Route::get('login/social/status', 'Api\V1\UserController@socialLoginCheck')->name('social.login.status');
 Route::get('user/activate', 'Auth\LoginController@activateUser')->name('user.activate');
 Route::get('youtube/validate/video', 'Api\V1\UserController@checkYoutubeVideo')->name('youtube.validate.video');
-
-/*Admin Route*/
-Route::get('/admin{any}', 'AdminController@index')->where('any', '.*');
 
 /*Front Route*/
 Route::prefix('services')->group(function () {
