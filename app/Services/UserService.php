@@ -3,8 +3,10 @@
 namespace App\Services;
 
 use App\Helper\Helper;
+use App\Models\City;
 use App\Models\Plan;
 use App\Models\Role;
+use App\Models\State;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -31,7 +33,6 @@ class UserService
             if (!empty($details['profile_data'])) {
 
                 if($user->role_id == Role::SERVICE_PROVIDER) {
-    // Todo
                     $user->business_details = (Object) app('ServiceProviderProfileRepository')->findByAttribute('user_id', $id, false, true);
                     if (!empty($details['provider_request_data'])) {
                         $serviceDetailsCriteria = ['user_id' => $id];
@@ -78,12 +79,6 @@ class UserService
 
 
             }
-            $country = app('CountryRepository')->findById($user->country_id);
-            $user->country = !empty($country->name) ? $country->name : '';
-            $City = app('CityRepository')->findById($user->city_id);
-            $user->city = !empty($City->name)?$City->name:'';
-            $state = app('StateRepository')->findById($user->state_id);
-            $user->state = !empty($state->name)?$state->name:'';
 
             $user->formatted_created_at = Carbon::parse($user->created_at)->format('F j, Y');
 

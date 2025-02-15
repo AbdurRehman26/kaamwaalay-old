@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Services\UserService;
 use App\Events\NewPasswordSet;
@@ -19,7 +20,7 @@ use Validator;
 
 class UserController extends Controller
 {
-    const   PER_PAGE = 10;
+    const PER_PAGE = 10;
 
     protected $model;
     public function __construct(public UserService $userService)
@@ -30,41 +31,13 @@ class UserController extends Controller
     {
         $rules = [];
 
-        if($value == 'update'){
-
-            $rules['id'] =  'required|exists:users,id';
-            $rules['user_details.first_name']    = 'required';
-            $rules['user_details.last_name']     = 'required';
-            $rules['user_details.email']         = 'required|email|unique:users,email,'.$this->input()['user_id'];
-            $rules['user_details.profile_image']     = 'nullable|string';
-            $rules['business_details.business_type']     = 'nullable|in:business,individual';
-            $rules['business_details.is_featured']     = 'nullable|in:1,0';
-
-            $rules['service_details.*.id']     = 'nullable|exists:service_provider_services,service_provider_profile_request_id';
-            $rules['service_details.*.service_id']     = 'nullable|exists:services,id';
-
-            $rules['stripe_token'] = [
-                Rule::requiredIf(function () {
-                    return (
-                        request()->user()->role_id === Role::SERVICE_PROVIDER
-                            && !request()->user()->is_profile_completed
-                                && request()->has('user_details.is_profile_completed')
-                    )
-                    || false;
-                }),
-            ];
-
-        }
-
         if($value == 'store') {
 
             $rule['first_name'] = 'required';
             $rule['last_name'] = 'required';
             $rule['email'] = 'required|email|unique:users,email|regex:/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/';
             $rule['role_id'] = ['required', Rule::in(Role::ADMIN, Role::REVIEWER)];
-            $rule['status'] = 'required|in:active,banned'; 
-
-
+            $rule['status'] = 'required|in:active,banned';
         }
 
         return $rules;
@@ -102,6 +75,30 @@ class UserController extends Controller
         }
 
         return $input;
+    }
+
+    public function update(User $user, UpdateUserRequest $request): UserResource
+    {
+        $input = $request->only(
+            'first_name', 'last_name', 'phone_number', 'profile_image',
+            'address', 'apartment', 'role_id', 'city_id', 'country_id', 'social_account_id',
+            'business_details.attachments',
+            'user_details.status',
+            'user_details.state_id',
+            'user_details.profle_image',
+            'user_details.is_profile_completed',
+            'user_details.stripe_token',
+            'business_details.business_name',
+            'business_details.business_details',
+            'business_details.duns_number',
+            'business_details.years_of_experience',
+            'business_details.business_type',
+            'service_details',
+        );
+
+        $user->update($input);
+
+        return UserResource::make($user->refresh());
     }
 
     public function changePassword(Request $request)
@@ -324,19 +321,6 @@ public function me(Request $request): UserResource
 
     return new UserResource($user);
 
-}
-
-
-
-public function responseMessages($value = '')
-{
-    $messages = [
-        'store' => 'User created successfully.',
-        'update' => 'User updated successfully.',
-        'destroy' => 'User deleted successfully.',
-    ];
-
-    return !empty($messages[$value]) ? $messages[$value] : 'Success.';
 }
 
 public function messages($value = '')

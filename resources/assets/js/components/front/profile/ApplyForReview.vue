@@ -236,11 +236,6 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="zipcode-selectize">
-                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
                                 <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="record.state_id">
@@ -357,14 +352,12 @@
                 },
                 submit : false,
                 pendingProfile : false,
-                invalidZip: false,
                 isSubmit : false,
                 isPaymentDetailShow : true,
                 plans : [],
                 accountCreationAmount: null,
                 selectedPlan :null,
                 currentCity: null,
-                checkZip: false,
             }
         },
         computed : {
@@ -388,27 +381,7 @@
             }
         },
 
-        watch: {
-            'record.zip_code' (val) {
-                if(!val) {
-                  //  this.invalidZip = true;
-                  //  this.record.zip_code = "";
-                }
-            },
-        },
         methods: {
-            setZipCode(val) {
-                if(this.checkZip) {
-                    this.record.zip_code = val.zip_code;
-                    this.setCity(val)
-                    this.invalidZip = false;
-                    if(!val.zip_code) {
-                        this.invalidZip = true;
-                    }
-                }
-                this.checkZip = true;
-
-            },
             setCity(object){
                 if(object.state_id){
                   this.record.state_id = object.state_id;  
@@ -473,15 +446,7 @@
                 this.isSubmit = false
 
                 this.$validator.validateAll().then((result) => {
-                    this.invalidZip = false;
-                    if(!this.record.zip_code) {
-                            this.invalidZip = true;
-                    }
                     if (result) {
-                        if(!this.record.zip_code) {
-                            this.errorMessage = 'Please enter zip code.';
-                            return false;
-                        }
                         if(this.findUniqueValues()){
                             this.errorMessage = 'Please remove duplicate services';
                             return false;

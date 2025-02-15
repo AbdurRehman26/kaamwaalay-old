@@ -160,7 +160,6 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\CityRepositoryServiceProvider::class,
         App\Providers\CountryRepositoryServiceProvider::class,
         App\Providers\JobBidRepositoryServiceProvider::class,
         App\Providers\JobRepositoryServiceProvider::class,

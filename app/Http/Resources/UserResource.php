@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\City;
+use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,10 +20,6 @@ class UserResource extends JsonResource
             'avg_rating' => $this->avg_rating,
             'card_brand' => $this->card_brand,
             'card_last_four' => $this->card_last_four,
-            'city' => $this->city,
-            'city_id' => $this->city_id,
-            'country' => $this->country,
-            'country_id' => $this->country_id,
             'created_at' => $this->created_at,
             'deleted_at' => $this->deleted_at,
             'email' => $this->email,
@@ -37,8 +35,6 @@ class UserResource extends JsonResource
             'role_id' => $this->role_id,
             'social_account_id' => $this->social_account_id,
             'social_account_type' => $this->social_account_type,
-            'state' => $this->state,
-            'state_id' => $this->state_id,
             'status' => $this->status,
             'stripe_id' => $this->stripe_id,
             'total_finshed_jobs' => $this->total_finshed_jobs,
@@ -49,6 +45,12 @@ class UserResource extends JsonResource
             'trial_ends_at' => $this->trial_ends_at,
             'updated_at' => $this->updated_at,
             'zip_code' => $this->zip_code,
+            'city' => $this->city?->name ?? '',
+            'city_id' => $this->city_id,
+            'state' => $this->state?->name ?? '',
+            'state_id' => $this->state_id,
+            'country' => $this->country?->name ?? '',
+            'country_id' => $this->country_id,
         ];
     }
 }

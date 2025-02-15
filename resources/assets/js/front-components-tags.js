@@ -102,5 +102,4 @@ Vue.component('jobs-list',require('./components/front/jobs/JobsList.vue').defaul
 Vue.component('explore-jobs-list',require('./components/front/jobs/ExploreJobList.vue').default); 
 Vue.component('job',require('./components/front/common-components/Job.vue').default); 
 
-Vue.component('zip',require('./components/front/common-components/Zip.vue').default); 
-Vue.component('city',require('./components/front/common-components/City.vue').default); 
+Vue.component('city',require('./components/front/common-components/City.vue').default);

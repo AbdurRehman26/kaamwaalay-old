@@ -88,11 +88,6 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="zipcode-selectize">
-                                <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="record.zip_code"></zip>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">State *</label>
                                 <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="record.state_id">
@@ -155,18 +150,10 @@
                 states : [],
                 file: null,
                 profileImage : '',
-                invalidZip: false,
                 currentCity: null,
             }
         },
         mounted(){
-        },
-        watch: {
-            'record.zip_code' (val) {
-                if(!val) {
-                    //this.invalidZip = true;
-                }
-            },
         },
         computed : {
             requestUrl(){
@@ -180,15 +167,6 @@
             }
         },
         methods: {
-            setZipCode(val) {
-                let self = this;
-                this.record.zip_code = val.zip_code;
-                this.setCity(val)
-                this.invalidZip = false;
-                if(!val.zip_code) {
-                    this.invalidZip = true;
-                }
-            },
             setCity(object){
                 if(object.state_id){
                   this.record.state_id = object.state_id;  
@@ -214,14 +192,7 @@
             })
             console.log(112321);
         }, 500);
-
-
-
        }
-
-
-
-
    },
    getResponse(response){
     let self = this;
@@ -250,13 +221,7 @@ getCityResponse(response){
 },
 validateBeforeSubmit() {
     this.$validator.validateAll().then((result) => {
-        this.invalidZip = false;
-        if(!this.record.zip_code) {
-            this.invalidZip = true;
-            this.errorMessage = 'Please enter zip code.';
-            return false;
-        }
-        if (result && !this.invalidZip) {
+        if (result) {
             this.onSubmit();
             this.errorMessage = '';
             return;
@@ -270,7 +235,7 @@ onSubmit() {
     this.record.is_profile_completed = 1;
 
     let data = {
-        user_details : this.record
+        ...this.record
     };
 
     self.loading = true;

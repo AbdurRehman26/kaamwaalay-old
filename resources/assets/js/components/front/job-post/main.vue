@@ -147,11 +147,6 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="zipcode-selectize">
-                            <zip @onSelect="setZipCode" :showError="invalidZip" :initialValue="formData.zip_code"></zip>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="">State *</label>
                             <select :class="['form-control', 'form-group' , errorBag.first('state') ? 'is-invalid' : '']" v-validate="'required'" @change="onStateChange(true)" name="state" v-model="formData.state_id">
@@ -275,7 +270,6 @@
                     city_id : '',
                     country_id : 231,
                     state_id : '',
-                    zip_code : '',
                     videos : '',
                     images : [],
                     subscription_id : null
@@ -288,7 +282,6 @@
                 states : [],
                 isShowCardDetail : true,
                 isPaymentDetailShow : true,
-                invalidZip: false,
                 isSubmit : false,
                 isUrgentJob : false,
                 forceUserValue : false,
@@ -297,7 +290,6 @@
                 videoValid : true,
                 searchServiceValue : '',
                 currentJob : '',
-                checkZip: false,
                 checkJob: false,
 
             }
@@ -375,17 +367,11 @@
 
                 let user = JSON.parse(this.$store.getters.getAuthUser);
                 this.formData.state_id = this.formData.state_id ? this.formData.state_id : user.state_id;
-                this.formData.zip_code = this.formData.zip_code ? this.formData.zip_code : user.zip_code;
                 this.formData.city_id = this.formData.city_id ? this.formData.city_id : user.city_id;
                 this.onStateChange();
 
                 let self = this;
-                let zipCode = this.$route.query.zip;
                 let serviceName = this.$route.query.service_name;
-                if(zipCode){
-                    this.formData.zip_code = zipCode;
-                }
-
                 if(serviceName){
                     let allServices = this.$store.getters.getAllServices;
                     if(allServices){
@@ -401,26 +387,6 @@
                     self.formData.service_provider_user_id = this.$route.query.service_provider_user_id;
                 }
 
-            },
-            setZipCode(val) {
-                //This is for select service unselected value start
-                let self = this;
-                // var searchServiceValue = this.searchServiceValue;
-                // setTimeout(function() {
-                //     self.searchServiceValue = searchServiceValue;
-                // }, 2000);
-                //This is for select service unselected value end
-                //if(this.checkZip) {
-                    if(val.zip_code){
-                        this.formData.zip_code = val.zip_code;
-                        this.setCity(val)
-                        this.invalidZip = false;
-                    }
-                    if(!val.zip_code) {
-                        this.invalidZip = true;
-                    }
-                //}
-                //this.checkZip = true;
             },
             setCity(object){
                 if(object.state_id){
@@ -514,12 +480,6 @@
                 self = this;
                 this.isSubmit = false;
                 this.$validator.validateAll().then((result) => {
-                    this.invalidZip = null;
-                    if(!this.formData.zip_code) {
-                        this.invalidZip = true;
-                        result = false;
-                    }
-
 
                     if(!this.searchServiceValue) {
                         this.errorMessage = 'The service field is required';
@@ -543,7 +503,7 @@
                             }
                         }, 500);
 
-                        if(!this.isPaymentDetailShow && !this.isUrgentJob && !this.invalidZip){
+                        if(!this.isPaymentDetailShow && !this.isUrgentJob){
                             this.onSubmit();
                         }
                         this.errorMessage = '';
@@ -626,11 +586,6 @@
 
         },
         watch:{
-            'formData.zip_code'(val) {
-                if(!val) {
-                    this.invalidZip = true;
-                }
-            },
             jobType (value) {
                 if(value == 'urgent_job'){
                     this.isShowCardDetail = false
