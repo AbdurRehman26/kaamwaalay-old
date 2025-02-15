@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,10 +47,6 @@ Route::resource('country', 'Api\V1\CountryController')->only([
 ]);
 
 Route::resource('state', 'Api\V1\StateController')->only([
-    'index', 'show',
-]);
-
-Route::resource('testimonial', 'Api\V1\TestimonialController')->only([
     'index', 'show',
 ]);
 

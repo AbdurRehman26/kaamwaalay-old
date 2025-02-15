@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Repositories;
+namespace App\Services;
 
 use App\Helper\Helper;
 use App\Models\Plan;
@@ -26,8 +26,8 @@ public $model;
 
 /**
 * This is the prefix of the cache key to which the
-* App\Data\Repositories data will be stored
-* App\Data\Repositories Auto incremented Id will be append to it
+* App\Services data will be stored
+* App\Services Auto incremented Id will be append to it
 *
 * Example: User-1
 *
@@ -56,7 +56,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
         $data->profileImage = $data->profile_image;
 
         if($data->profile_image && substr($data->profile_image, 0, 8) != "https://"){
-            $data->profileImage = Storage::url(config('uploads.user.folder').'/'.$data->profile_image);
+            $data->profileImage = Storage::url(config('uploads.user.folder') . 'UserRepository.php/' .$data->profile_image);
         }
 
         $data->role = app('RoleRepository')->findById($data->role_id);

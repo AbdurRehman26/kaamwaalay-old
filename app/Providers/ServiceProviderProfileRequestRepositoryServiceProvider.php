@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Data\Repositories\ServiceProviderProfileRequestRepository;
+use App\Services\ServiceProviderProfileRequestRepository;
 use App\Models\ServiceProviderProfileRequest;
 use App\Models\User;
 use App\Notifications\ServiceProviderReviewNotification;

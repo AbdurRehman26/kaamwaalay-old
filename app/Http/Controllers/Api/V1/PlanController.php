@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\PlanRepository;
+use App\Services\PlanRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 

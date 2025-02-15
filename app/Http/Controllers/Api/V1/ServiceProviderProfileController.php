@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\ServiceProviderProfileRepository;
+use App\Services\ServiceProviderProfileRepository;
 
 class ServiceProviderProfileController extends ApiResourceController
 {

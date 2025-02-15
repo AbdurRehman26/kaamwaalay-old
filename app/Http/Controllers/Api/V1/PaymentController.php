@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\PaymentRepository;
+use App\Services\PaymentRepository;
 use App\Models\Plan;
 use App\Models\Role;
 use Illuminate\Http\Request;

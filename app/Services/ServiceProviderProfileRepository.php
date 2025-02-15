@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Repositories;
+namespace App\Services;
 
 use App\Models\Role;
 use App\Models\ServiceProviderProfile;
@@ -22,8 +22,8 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
 
     /**
      * This is the prefix of the cache key to which the
-     * App\Data\Repositories data will be stored
-     * App\Data\Repositories Auto incremented Id will be append to it
+     * App\Services data will be stored
+     * App\Services Auto incremented Id will be append to it
      *
      * Example: ServiceProviderProfile-1
      *
@@ -111,7 +111,7 @@ class ServiceProviderProfileRepository extends AbstractRepository implements Rep
                     foreach ($data->attachments[$key] as $childKey => $childValue) {
                         if($childValue){         
                             if(!empty($childValue['name'])){                 
-                                $data->attachmentsUrl[$key][$childKey]['name'] = Storage::url(config('uploads.service_provider.folder').'/'.$childValue['name']);
+                                $data->attachmentsUrl[$key][$childKey]['name'] = Storage::url(config('uploads.service_provider.folder') . 'ServiceProviderProfileRepository.php/' .$childValue['name']);
                                 $data->attachmentsUrl[$key][$childKey]['original_name'] = $childValue['original_name']; 
                             }
                         }

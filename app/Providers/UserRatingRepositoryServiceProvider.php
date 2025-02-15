@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Data\Repositories\UserRatingRepository;
+use App\Services\UserRatingRepository;
 use App\Models\Job;
 use App\Models\Role;
 use App\Models\User;

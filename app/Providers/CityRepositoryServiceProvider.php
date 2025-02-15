@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Data\Repositories\CityRepository;
+use App\Services\CityRepository;
 use App\Models\City;
 use Illuminate\Support\ServiceProvider;
 

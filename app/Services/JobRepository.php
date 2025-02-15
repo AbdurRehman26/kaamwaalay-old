@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Repositories;
+namespace App\Services;
 
 use App\Models\Job;
 use App\Models\JobBid;
@@ -29,8 +29,8 @@ public $model;
 
 /**
 * This is the prefix of the cache key to which the
-* App\Data\Repositories data will be stored
-* App\Data\Repositories Auto incremented Id will be append to it
+* App\Services data will be stored
+* App\Services Auto incremented Id will be append to it
 *
 * Example: Job-1
 *
@@ -147,8 +147,8 @@ public function findById($id, $refresh = false, $details = false, $encode = true
             if(!empty($data->images)){
                 foreach ($data->images as $key => $image) {
                     if(!empty($image['name']) && is_string($image['name'])){   
-                        $data->jobImages[] = Storage::url(config('uploads.job.folder').'/'.$image['name']);
-                        $data->jobThumbImages[] = Storage::url(config('uploads.job.thumb.folder').'/'.$image['name']);
+                        $data->jobImages[] = Storage::url(config('uploads.job.folder') . 'JobRepository.php/' .$image['name']);
+                        $data->jobThumbImages[] = Storage::url(config('uploads.job.thumb.folder') . 'JobRepository.php/' .$image['name']);
                     }
                 }
             }

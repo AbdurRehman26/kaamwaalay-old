@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\CountryRepository;
+use App\Services\CountryRepository;
 
 class CountryController extends ApiResourceController
 {

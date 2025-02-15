@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\UserRepository;
+use App\Services\UserRepository;
 use App\Events\NewPasswordSet;
 use App\Helper\Helper;
 use App\Jobs\CustomerBanned;

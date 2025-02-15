@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\DashboardRepository;
+use App\Services\DashboardRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use \Validator;

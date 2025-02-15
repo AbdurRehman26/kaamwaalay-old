@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Data\Repositories\JobRepository;
+use App\Services\JobRepository;
 use App\Jobs\UrgentJobCreate;
 use App\Models\Job;
 use App\Models\JobBid;

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Data\Repositories\CountryRepository;
+use App\Services\CountryRepository;
 use App\Models\Country;
 use Illuminate\Support\ServiceProvider;
 

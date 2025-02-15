@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Data\Repositories\SupportQuestionRepository;
+use App\Services\SupportQuestionRepository;
 use App\Models\SupportQuestion;
 use Illuminate\Support\ServiceProvider;
 

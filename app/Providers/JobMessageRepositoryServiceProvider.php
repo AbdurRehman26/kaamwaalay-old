@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Data\Repositories\JobMessageRepository;
+use App\Services\JobMessageRepository;
 use App\Models\JobMessage;
 use Illuminate\Support\ServiceProvider;
 

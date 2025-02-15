@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\CityRepository;
+use App\Services\CityRepository;
 
 class CityController extends ApiResourceController
 {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\SupportQuestionRepository;
+use App\Services\SupportQuestionRepository;
 
 class SupportQuestionController extends ApiResourceController
 {

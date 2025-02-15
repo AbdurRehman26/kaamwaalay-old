@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Data\Repositories\UserRepository;
+use App\Services\UserRepository;
 use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 

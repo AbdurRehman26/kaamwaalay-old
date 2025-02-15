@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Data\Repositories\JobBidRepository;
+use App\Services\JobBidRepository;
 use App\Models\Job;
 use App\Models\JobBid;
 use App\Models\User;

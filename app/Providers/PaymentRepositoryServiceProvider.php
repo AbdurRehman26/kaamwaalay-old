@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Data\Repositories\PaymentRepository;
+use App\Services\PaymentRepository;
 use App\Models\Payment;
 use Illuminate\Support\ServiceProvider;
 

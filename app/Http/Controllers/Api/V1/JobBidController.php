@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\JobBidRepository;
+use App\Services\JobBidRepository;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 

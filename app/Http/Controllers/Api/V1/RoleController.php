@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\RoleRepository;
+use App\Services\RoleRepository;
 
 class RoleController extends ApiResourceController
 {

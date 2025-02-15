@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\SupportInquiryRepository;
+use App\Services\SupportInquiryRepository;
 use App\Models\Role;
 
 class SupportInquiryController extends ApiResourceController

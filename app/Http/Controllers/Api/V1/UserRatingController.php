@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\UserRatingRepository;
+use App\Services\UserRatingRepository;
 use Illuminate\Validation\Rule;
 
 class UserRatingController extends ApiResourceController

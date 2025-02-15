@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Repositories;
+namespace App\Services;
 
 use App\Models\Role;
 use App\Models\Service;
@@ -24,8 +24,8 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
 
     /**
      * This is the prefix of the cache key to which the
-     * App\Data\Repositories data will be stored
-     * App\Data\Repositories Auto incremented Id will be append to it
+     * App\Services data will be stored
+     * App\Services Auto incremented Id will be append to it
      *
      * Example: Service-1
      *
@@ -65,7 +65,7 @@ class ServiceRepository extends AbstractRepository implements RepositoryContract
             $serviceProdiderCriteria = ['service_id' => (int)$data->id];
             $data->service_prodider_count = $this->serviceProviderRepo->getTotalCountByCriteria($serviceProdiderCriteria);
             $data->url_suffix;
-            $data->url = url(config('view.service.url.folder')).'/'.$data->url_suffix;
+            $data->url = url(config('view.service.url.folder')) . 'ServiceRepository.php/' .$data->url_suffix;
             $data->provider_count = $this->getServicesProvderCountByZip($data->id, $zip);
             //comentend due to errors in various places
             // if(!empty($data->images)) {

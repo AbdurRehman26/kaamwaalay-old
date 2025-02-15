@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Repositories;
+namespace App\Services;
 
 use App\Models\Country;
 use Kazmi\Data\Contracts\RepositoryContract;
@@ -18,8 +18,8 @@ class CountryRepository extends AbstractRepository implements RepositoryContract
 
     /**
      * This is the prefix of the cache key to which the
-     * App\Data\Repositories data will be stored
-     * App\Data\Repositories Auto incremented Id will be append to it
+     * App\Services data will be stored
+     * App\Services Auto incremented Id will be append to it
      *
      * Example: Country-1
      *

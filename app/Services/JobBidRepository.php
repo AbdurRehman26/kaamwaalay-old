@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Repositories;
+namespace App\Services;
 
 use App\Jobs\JobBidCreated;
 use App\Models\JobBid;
@@ -21,8 +21,8 @@ public $model;
 
 /**
 * This is the prefix of the cache key to which the
-* App\Data\Repositories data will be stored
-* App\Data\Repositories Auto incremented Id will be append to it
+* App\Services data will be stored
+* App\Services Auto incremented Id will be append to it
 *
 * Example: JobBid-1
 *
@@ -195,7 +195,7 @@ public function findById($id, $refresh = false, $details = false, $encode = true
             foreach ($data->job_done_images as $key => $value) {
                 if(!empty($value['name'])) {
                     $data->job_done_images[$key]['url'] = \Storage::url("{$directory}{$value['name']}");
-                    $data->job_done_images[$key]['thumb_url'] = \Storage::url(config('uploads.job_done.thumb.folder').$value['name']);
+                    $data->job_done_images[$key]['thumb_url'] = \Storage::url(JobBidRepository . phpconfig('uploads.job_done.thumb.folder') . $value['name']);
                 }
             }
         }

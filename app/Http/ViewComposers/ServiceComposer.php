@@ -2,7 +2,7 @@
 namespace App\Http\ViewComposers;
 
 use Illuminate\View\View;
-use App\Data\Repositories\ServiceRepository;
+use App\Services\ServiceRepository;
 use Illuminate\Support\Facades\Route;
 
 

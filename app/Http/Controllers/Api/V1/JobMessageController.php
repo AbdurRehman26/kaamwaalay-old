@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Data\Repositories\JobMessageRepository;
+use App\Services\JobMessageRepository;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 

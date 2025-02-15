@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Data\Repositories;
+namespace App\Services;
 
 use App\Events\UserMessaged;
 use App\Models\JobMessage;
@@ -21,8 +21,8 @@ class JobMessageRepository extends AbstractRepository implements RepositoryContr
 
     /**
      * This is the prefix of the cache key to which the
-     * App\Data\Repositories data will be stored
-     * App\Data\Repositories Auto incremented Id will be append to it
+     * App\Services data will be stored
+     * App\Services Auto incremented Id will be append to it
      *
      * Example: JobMessage-1
      *
