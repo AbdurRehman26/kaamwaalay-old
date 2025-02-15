@@ -9,11 +9,6 @@ import VueRouter from 'vue-router';
 import vbclass from 'vue-body-class';
 import BootstrapVue from 'bootstrap-vue';
 
-import AmCharts from 'amcharts3';
-import AmSerial from 'amcharts3/amcharts/serial';
-import AmPie from 'amcharts3/amcharts/pie';
-import AmFunnelChart  from 'amcharts3/amcharts/funnel';
-import AmGauge from 'amcharts3/amcharts/gauge';
 import Datepicker from 'vuejs-datepicker';
 import VueProgressBar from 'vue-progressbar';
 import Multiselect from 'vue-multiselect';
@@ -43,7 +38,7 @@ Vue.use(Datepicker);
 Vue.use( vbclass, router );
 
 Vue.use(require('vue-faker'));
-Vue.use(VueProgressBar, options);
+Vue.use(VueProgressBar);
 
 
 Vue.use(InfiniteLoading);
@@ -58,7 +53,6 @@ Vue.use(VueAuthenticate, {
     logoutUrl: '/api/auth/logout',
     storageType: 'cookieStorage',
     providers: {
-        // Define OAuth providers config
         oauth2: {
             name: 'oauth2',
             url: 'Token/Exchange',
@@ -75,19 +69,6 @@ Vue.use(Geocoder, {
 Vue.$geocoder.setDefaultMode('address');
 
 Vue.use(Vuex); 
-// base/global options
-// these options can be overridden 
-// by the options in the .open(options) 
-// function.
-/*const stripeOptions = {
-  key: 'pk_test_ix9VLy3CYcuwWxz1UkMipKun',
-  image: '',
-  locale: 'auto',
-  currency: 'PHP',
-  billingAddress: false,
-  panelLabel: 'Subscribe {{amount}}'
-}
-Vue.use(VueStripeCheckout, stripeOptions);*/
 Vue.component('multiselect', Multiselect);
 Vue.component('MaterialIcons', MaterialIcons);
 
@@ -193,7 +174,6 @@ const app = new Vue({
         },
     },
     mounted(){
-
         this.browserfunction();
     },
     created () {
@@ -219,8 +199,6 @@ const app = new Vue({
                 var elmnt = document.getElementById("bid-review");
                 elmnt.scrollIntoView();        
             }
-            // var elmnt = document.getElementById("bid-review");
-            // elmnt.scrollIntoView();                    
         }
     }
 });
@@ -241,23 +219,3 @@ Vue.axios.interceptors.response.use((response) => { // intercept the global erro
        return Promise.reject(error);
    }
 })
-
-// Laravel Echo 
-import Echo from 'laravel-echo';
-window.io = require('socket.io-client');
-if(app.$auth.isAuthenticated()) {
-    let token = document.head.querySelector('meta[name="csrf-token"]');
-    window.Echo = new Echo({
-        broadcaster: 'socket.io',
-        host: window.location.hostname + ':'+ window.socketPort,
-        auth: {
-            headers: {
-                Authorization: 'Bearer ' + app.$auth.getToken(),//token.content,
-            },
-        },
-    });
-}
-/*const app = new Vue({
-    router
-}).$mount('#app')*/
-// Require components tags

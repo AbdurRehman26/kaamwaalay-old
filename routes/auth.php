@@ -76,7 +76,7 @@ Route::group(['middleware' => ['scopes']], function () {
     Route::put('user/change-status', 'Api\V1\UserController@changeStatus')->name('change.status');
     Route::get('user/notification', 'Api\V1\UserController@getUserNotification')->name('user.notification');
     Route::post('user/mark-read-notification', 'Api\V1\UserController@markRead')->name('user.notification.mark.read');
-    Route::get('user/me', 'Api\V1\UserController@getAuthUser')->name('user.me');
+    Route::get('user/me', 'Api\V1\UserController@me')->name('user.me');
     
     Route::resource('user', 'Api\V1\UserController')->except([
         'edit','destory','create'

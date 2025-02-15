@@ -77,10 +77,6 @@
         },
         created() {
         },
-        destroyed() {
-            this.userIsOffline();
-            this.unSubscribeChannel();
-        },
         methods: {
             getList(data , page , successCallback){
                 let self = this;
@@ -250,35 +246,6 @@
                 let data = this.jobMessageData;
                 data.pagination = true;
                 this.getList(data, false);
-                this.unSubscribeChannel();
-                this.subscribeChannel();
-                this.userIsOnline();
-            },
-            unSubscribeChannel() {
-                if(typeof(this.jobMessageData) != "undefined" && typeof(this.jobMessageData.job_bid_id) != "undefined") {
-                    let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
-                    //let channelUserOnlineName = 'User-Is-Online.' + this.jobMessageData.job_bid_id;
-                    window.Echo.leave(channelName);
-                    //window.Echo.leave(channelUserOnlineName);
-
-                }
-            },
-            subscribeChannel() {
-                let self = this;
-                let channelName = 'Job-Messages.' + this.jobMessageData.job_bid_id;
-                //let channelUserOnlineName = 'User-Is-Online.' + this.jobMessageData.job_bid_id;
-                window.Echo.private(channelName).listen('.App\\Events\\UserMessaged', (e) => {
-                    
-                    self.isOnline = true;
-                    self.messages.push(e.discussion);
-                    self.scrollToEnd();
-                });
-
-                // window.Echo.private(channelUserOnlineName).listen('.App\\Events\\UserMessaged', (e) => {
-                //     if(typeof(e.discussion.user_is_online) != "undefined")  {
-                //         self.isOnline = e.discussion.user_is_online;
-                //     }
-                // });
             },
             scrollToEnd() {
                 let self = this;
@@ -286,41 +253,6 @@
                     self.$refs.scrollWrapper.scrollTop = self.$refs.scrollWrapper.scrollHeight;
                 }, 500);
             },
-            userIsOnline() {
-                var self = this;
-                this.loading = true;
-                // let url = 'api/job-message?pagination=true&trigger_online_status=true&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
-                // let data = {};
-                // this.$http.post(url, data).then(response => {
-                //     response = response.data;
-                // }).catch(error => {
-                //     error = error.response.data;
-                //     let errors = error.errors;
-                // });
-            },
-            userIsOffline() {
-
-                if(typeof(this.jobMessageData) != "undefined" && typeof(this.jobMessageData.job_bid_id) != "undefined") {
-                    var self = this;
-                    this.messages = [];
-                    this.text = "";
-                    this.isOnline = false;
-                    this.$emit('closeChat');
-                    this.loading = true;
-                    // let url = 'api/job-message?pagination=true&trigger_online_status=false&job_id=' + this.jobMessageData.job_id + '&job_bid_id=' + this.jobMessageData.job_bid_id;
-                    // let data = {};
-                    // this.$http.post(url, data).then(response => {
-                    //     response = response.data;
-                    // }).catch(error => {
-                    //     error = error.response.data;
-                    //     let errors = error.errors;
-                    // });
-                }
-            },
-            hideChatBox() {
-                this.userIsOffline();
-                this.unSubscribeChannel();
-            }
         },
         computed: {
             disabledChat() {
@@ -348,14 +280,6 @@
             }
         },  
         watch: {
-            show(value) {
-                if(value) {
-                    //this.showChatBox();
-                }
-                if(!value) {
-                    this.hideChatBox();
-                }
-            },
             height(newVal,oldVal){
                 var diff = newVal - oldVal;
                 this.$refs.scrollWrapper.scrollTop = diff

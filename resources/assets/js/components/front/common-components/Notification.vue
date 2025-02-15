@@ -59,9 +59,6 @@
         mounted(){
             self = this
             this.show = true;
-            setTimeout(function(){
-                 self.subscribeChannel();
-            }, 3000);      
         },
         methods: {
             getNotificationRecords(response){
@@ -73,17 +70,6 @@
                     this.notificationCount = response.unread_count ? response.unread_count : "";
                     this.$parent.notificationCount = this.notificationCount;
                     this.noRecordFound = response.noRecordFound
-            },
-            subscribeChannel() {
-                let channelName = 'App.Data.Models.User.'+this.$parent.userDetails.id;
-                self = this
-                window.Echo.leave(channelName);
-                window.Echo.private(channelName).notification((notification) => {
-                    self.noRecordFound = false
-                    self.notificationData.unshift(notification);
-                    self.notificationCount = 1+self.notificationCount;
-                    self.$parent.notificationCount = self.notificationCount;
-                });
             },
             markRead() {
                 let self = this;

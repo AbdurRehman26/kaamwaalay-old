@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Services\UserRepository;
+use App\Services\UserService;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -41,7 +41,7 @@ class ResetPasswordController extends Controller
      *
      * @return void
      */
-    public function __construct( UserRepository $repository)
+    public function __construct(UserService $repository)
     {
         $this->middleware('guest');
          $this->_userRepository  =$repository;

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\UserRepository;
+use App\Services\UserService;
 use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,7 +27,7 @@ class UserRepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             'UserRepository', function () {
-                return new UserRepository(new User);
+                return new UserService(new User);
             }
         );
     }

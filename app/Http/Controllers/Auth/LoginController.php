@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Services\UserRepository;
+use App\Services\UserService;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
@@ -40,7 +40,7 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct(UserRepository $repository)
+    public function __construct(UserService $repository)
     {
         $this->_userRepository  = $repository;
         $this->middleware('guest')->except('logout');

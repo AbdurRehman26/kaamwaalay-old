@@ -2,19 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class FrontController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
         //
-        return view('front-layout');
+        return view('layout');
     }
 
 

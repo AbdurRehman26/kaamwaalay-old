@@ -26,6 +26,7 @@
         "nunomaduro/collision": "^8.1",
         "pda/pheanstalk": "^3.1",
         "predis/predis": "^1.1",
+        "spatie/laravel-query-builder": "^6.3",
         "symfony/console": "^7.0",
         "yadakhov/insert-on-duplicate-key": "^1.2"
     },

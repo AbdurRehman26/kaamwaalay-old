@@ -2,38 +2,16 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Services\CityRepository;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CityResource;
+use App\Models\City;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class CityController extends ApiResourceController
+class CityController extends Controller
 {
-    public $_repository;
-
-    public function __construct(CityRepository $repository)
+    public function index(Request $request): AnonymousResourceCollection
     {
-        $this->_repository = $repository;
-    }
-
-    public function rules($value='')
-    {
-        $rules = [];
-
-        if($value == 'show') {
-            $rules['id'] =  'required|numeric|exists:cities,id';
-        }
-
-        if($value == 'index') {
-            $rules['pagination']    =  'nullable|boolean';
-            $rules['state_id'] =  'nullable|numeric|exists:states,id';
-        }
-
-        return $rules;
-
-    }
-
-
-    public function input($value='')
-    {
-        $input = request()->only('id', 'pagination', 'state_id', 'keyword', 'details');
-        return $input;
+        return CityResource::collection(City::forState($request->state_id)->get());
     }
 }

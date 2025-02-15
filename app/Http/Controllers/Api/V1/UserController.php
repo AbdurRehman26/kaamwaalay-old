@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Services\UserRepository;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use App\Services\UserService;
 use App\Events\NewPasswordSet;
 use App\Helper\Helper;
 use App\Jobs\CustomerBanned;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
 use Validator;
 
-class UserController extends ApiResourceController
+class UserController extends Controller
 {
-    public $_repository;
     const   PER_PAGE = 10;
+
     protected $model;
-    public function __construct(UserRepository $repository)
+    public function __construct(public UserService $userService)
     {
-        $this->_repository = $repository;
     }
 
     public function rules($value='')
@@ -309,23 +311,18 @@ public function changeAccessLevel(Request $request)
 }
 
 
-public function getAuthUser(Request $request)
+public function me(Request $request): UserResource
 {
     $user_id = $request->user()->id;
     $details = $request->only('details');
 
-    $data = $this->_repository->findById(
+    $user = $this->userService->findById(
         $user_id,
         false,
         !empty($details['details']) ? $details['details'] : false
     );
 
-    $output = [
-        'data' => $data,
-    ];
-    $code = 200;
-
-    return response()->json($output, $code);
+    return new UserResource($user);
 
 }
 

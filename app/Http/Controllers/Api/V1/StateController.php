@@ -2,38 +2,16 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Services\StateRepository;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\StateResource;
+use App\Models\State;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class StateController extends ApiResourceController
+class StateController extends Controller
 {
-    public $_repository;
-
-    public function __construct(StateRepository $repository)
+    public function index(Request $request): AnonymousResourceCollection
     {
-        $this->_repository = $repository;
-    }
-
-    public function rules($value='')
-    {
-        $rules = [];
-
-        if($value == 'show') {
-            $rules['id'] =  'required|exists:states,id';
-        }
-
-        if($value == 'index') {
-            $rules['pagination']    =  'nullable|boolean';
-            $rules['country_id']    =  'nullable|exists:countries,id';
-        }
-
-        return $rules;
-
-    }
-
-
-    public function input($value='')
-    {
-        $input = request()->only('id', 'pagination', 'country_id');
-        return $input;
+        return StateResource::collection(State::all());
     }
 }
